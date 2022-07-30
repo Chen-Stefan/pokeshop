@@ -1,0 +1,58 @@
+.top-header{
+		
+	text-align: center;
+	height: 60px;
+}
+
+.logo{
+	float: left;          
+	margin: none;
+	height: 60px;
+	width: 60px;
+}
+
+.logo img{
+	width: 60%;
+	float: left;
+	padding: 10px 0px;
+}
+
+.menu{
+	float: right;
+	width: 70%;
+	height: 100%;
+	margin: none;
+}
+	
+.menu ul{
+	text-align: center;
+	float: right;
+	margin: none;
+}
+	
+.menu li{
+	display: inline-block;
+	padding: none;
+	margin: none;
+}
+	
+.menu li a, .menu li span{
+	display: inline-block;
+	padding: 0em 1.5em;
+	text-decoration: none;
+	font-weight: 600;
+	text-transform: uppercase;
+	line-height: 60px;
+}
+	
+.menu li a{
+		
+	color: #0074D9;
+}
+	
+.menu li:hover a, .menu li span{
+	background: #0074D9;
+	color: white;
+	border-left: 1px solid whitesmoke;
+	text-decoration: none;
+}
