@@ -7,12 +7,29 @@ import Profile from "./pages/Profile";
 import 'App.css';
 import Context, { myContext } from "./pages/Context";
 import Register from "./pages/Register";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="App">
-     
-    </div>
+    <BrowserRouter>
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Homepage />}></Route>
+      {ctx ? (
+        <>
+          {ctx.isAdmin ? (
+            <Route path="/admin" element={<AdminPage />}></Route>
+          ) : null}
+          <Route path="/profile" element={<Profile />}></Route>
+        </>
+      ) : (
+        <>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+        </>
+      )}
+    </Routes>
+  </BrowserRouter>
   );
 }
 
