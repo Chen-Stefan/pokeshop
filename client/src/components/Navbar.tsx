@@ -1,35 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import pokeball from "../assets/images/pokeball.webp";
 
 export default function Navbar() {
-  const logo = require('../assets/images/pokeball.webp');
-  
   return (
     <div className="top-header">
       <div className="logo">
         <Link to="/">
-          <img src="/images/pokeball.webp" />
+          <img src={pokeball} />
         </Link>
       </div>
 
-      <nav>
+      <div>
         <div className="menu">
-          <ul>
-            <li className="active">
-              <a href="/landing">Home</a>
-            </li>
-            <li>
-              <a href="/search.html">Search</a>
-            </li>
-            <li>
-              <a href="/profile">Profile</a>
-            </li>
-            <li>
-              <a href="/game.html">Shop</a>
-            </li>
-          </ul>
+          <Link to="/landing" className="active">Home</Link>
+          <Link to="/search">Search</Link>
+          <Link to="/profile">Profile</Link>
+          <Link to="/checkout">shopcart</Link>
         </div>
-      </nav>
+      </div>
     </div>
   );
 }
