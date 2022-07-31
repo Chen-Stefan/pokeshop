@@ -1,12 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
+  const logo = require('../assets/images/pokeball.webp');
+  
   return (
     <div className="top-header">
       <div className="logo">
-        <a href="/">
+        <Link to="/">
           <img src="/images/pokeball.webp" />
-        </a>
+        </Link>
       </div>
 
       <nav>
