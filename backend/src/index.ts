@@ -6,7 +6,7 @@ import passportLocal from 'passport-local';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import bcrypt from 'bcryptjs';
-import User from './User'
+import User from './models/User'
 import dotenv from 'dotenv';
 import { UserInterface } from './interfaces/UserInterface'
 
