@@ -1,3 +1,4 @@
+import * as dotenv from "dotenv";
 import mongoose, { Error } from 'mongoose';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
@@ -7,7 +8,6 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import bcrypt from 'bcryptjs';
 import User from './models/User'
-import dotenv from 'dotenv';
 import { UserInterface } from './interfaces/UserInterface'
 
 const LocalStrategy = passportLocal.Strategy
@@ -15,7 +15,7 @@ const LocalStrategy = passportLocal.Strategy
 // .env
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(`${process.env.MONGO_URI}`, {
 }, (err: Error) => {
    if (err) throw err
 })
@@ -65,3 +65,11 @@ passport.use(new LocalStrategy((username: string, password: string, done) => {
      cb(err, userInformation);
    });
  });
+
+
+
+
+ app.listen(5000, () => {
+   console.log('Server Started')
+ })
+ 

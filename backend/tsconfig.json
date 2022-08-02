@@ -17,4 +17,5 @@
       "noImplicitAny": true,
       "strictNullChecks": true
   },
+  "include": ["src/index.ts", "src/*.d.ts"]
 }
