@@ -1,3 +1,7 @@
+* {
+	margin: 0px 3px;
+}
+
 .top-header{
 		
 	text-align: center;
@@ -14,45 +18,31 @@
 .logo img{
 	width: 60%;
 	float: left;
-	padding: 10px 0px;
+	padding: 5px 0px;
 }
 
 .menu{
 	float: right;
-	width: 70%;
 	height: 100%;
-	margin: none;
+	margin-left: 100px
 }
 	
-.menu ul{
-	text-align: center;
-	float: right;
-	margin: none;
-}
-	
-.menu li{
-	display: inline-block;
-	padding: none;
-	margin: none;
-}
-	
-.menu li a, .menu li span{
-	display: inline-block;
+
+.menu a {
 	padding: 0em 1.5em;
 	text-decoration: none;
 	font-weight: 600;
 	text-transform: uppercase;
 	line-height: 60px;
-}
-	
-.menu li a{
-		
 	color: #0074D9;
+	float: left;
+
 }
 	
-.menu li:hover a, .menu li span{
+	
+.menu a:hover {
 	background: #0074D9;
 	color: white;
 	border-left: 1px solid whitesmoke;
-	text-decoration: none;
+	
 }
