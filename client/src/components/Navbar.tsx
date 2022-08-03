@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import pokeball from "../assets/images/pokeball.webp";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export default function Navbar() {
   const { openCart, cartQuantity } = useShoppingCart();
