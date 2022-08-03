@@ -7,6 +7,7 @@ import Homepage from "./pages/HomePage";
 import Search from "./pages/Search";
 import Profile from "./pages/Profile";
 import Checkout from "./pages/Checkout";
+import Welcome from "./components/Welcome";
 
 function App() {
   const ctx = useContext(myContext);
@@ -14,6 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <Welcome />
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/search" element={<Search />}></Route>
