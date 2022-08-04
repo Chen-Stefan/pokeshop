@@ -8,6 +8,7 @@ import Search from "./pages/Search";
 import Profile from "./pages/Profile";
 import Checkout from "./pages/Checkout";
 import Welcome from "./components/Welcome";
+import Authentication from "./components/Authentication";
 
 function App() {
   const ctx = useContext(myContext);
@@ -16,6 +17,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Welcome />
+      <Authentication />
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/search" element={<Search />}></Route>
