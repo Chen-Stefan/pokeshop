@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Authentication() {
   const [username, setUsername] = useState("");
@@ -16,7 +17,7 @@ export default function Authentication() {
             <div className="container">
               <h1 className="my-2 mx-4">Pokeshop</h1>
               <p className="lead mx-4 mt-4">
-                Gather your favorite Pokemon Cards
+                Gather your favorite Pokemon cards
               </p>
             </div>
           </div>
@@ -52,13 +53,11 @@ export default function Authentication() {
               >
                 Login
               </button>
-              <a
-                href="user/regist/er"
-                className="btn btn-outline-primary"
-                role="button"
-              >
-                Register
-              </a>
+              <Link to="/register">
+                <button type="button" className="btn btn-outline-primary">
+                  Register
+                </button>
+              </Link>
             </form>
             <span id="error-message"></span>
           </div>
