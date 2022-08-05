@@ -7,8 +7,6 @@ import Homepage from "./pages/HomePage";
 import Search from "./pages/Search";
 import Profile from "./pages/Profile";
 import Checkout from "./pages/Checkout";
-import Welcome from "./components/Welcome";
-import Authentication from "./components/Authentication";
 import Register from "./pages/Register";
 
 function App() {
