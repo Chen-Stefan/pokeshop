@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
 import User from '../models/User'
@@ -32,17 +32,18 @@ router.post('/register', async (req: Request, res: Response) => {
 })
 
 // Log in user
-router.post('/login', passport.authenticate('local'), (req: any, res: { send: (arg0: string) => void; }) => {
+router.post('/login', passport.authenticate('local'), (req: Request, res: Response) => {
   res.send('Authentication Successful')
 })
 
 // Log out user
-router.get('/logout', function(req: { logout: (arg0: (err: any) => void) => void; }, res: { send: (arg0: string) => void; }){
+router.get('/logout', function(req: Request, res: Response){
   req.logout(function(err) {
     if (err) { return next(err); }
     res.send('Logout successful');
   });
 });
+
 
 function next(err: any): void {
   throw new Error('Function not implemented.');

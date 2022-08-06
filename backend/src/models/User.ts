@@ -6,9 +6,9 @@ const user = new mongoose.Schema({
     unique: true
   },
   password: String,
-  isAdmin: {
-    type: Boolean,
-    default: false
+  email: {
+    type: String,
+    unique: true
   }
 })
 // User is name of collection, user is what the collection is defined as
