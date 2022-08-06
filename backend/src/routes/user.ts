@@ -6,6 +6,7 @@ import { UserInterface } from '../interfaces/UserInterface'
 
 const router = require("express").Router();
 
+// Register user
 router.post('/register', async (req: Request, res: Response) => {
 
   const { username, password } = req?.body
@@ -30,17 +31,13 @@ router.post('/register', async (req: Request, res: Response) => {
   
 })
 
-router.post('/login', passport.authenticate('local'), (req, res) => {
+// Log in user
+router.post('/login', passport.authenticate('local'), (req: any, res: { send: (arg0: string) => void; }) => {
   res.send('Authentication Successful')
 })
 
-// Grab logged in user
-router.get('/user', (req, res) => {
-  res.send(req.user)
-})
-
 // Log out user
-router.get('/logout', function(req, res){
+router.get('/logout', function(req: { logout: (arg0: (err: any) => void) => void; }, res: { send: (arg0: string) => void; }){
   req.logout(function(err) {
     if (err) { return next(err); }
     res.send('Logout successful');
@@ -50,3 +47,5 @@ router.get('/logout', function(req, res){
 function next(err: any): void {
   throw new Error('Function not implemented.');
 }
+
+export = router
