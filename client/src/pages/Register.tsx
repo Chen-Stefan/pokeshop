@@ -1,10 +1,21 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Register() {
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  
+  const register = () => {
+    axios.post('http://localhost:5000/register', {
+      username,
+      email,
+      password
+    }, {
+      withCredentials: true
+    }).then(res => console.log(res))
+  }
 
   return (
     <div className="jumbotron">
@@ -45,8 +56,8 @@ export default function Register() {
           />
           <label htmlFor="password">Password</label>
         </div>
-        
-        <button type="submit" className="btn btn-primary">
+
+        <button onClick={register} className="btn btn-primary">
           Register
         </button>
         <Link to="/">
