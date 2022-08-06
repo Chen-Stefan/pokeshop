@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Register() {
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   return (
     <div className="jumbotron">
       <h1>Register</h1>
@@ -9,6 +13,7 @@ export default function Register() {
         <div className="form-floating mb-3">
           <input
             type="text"
+            onChange={e => setUsername(e.target.value)}
             className="form-control"
             id="username"
             placeholder="username"
@@ -20,6 +25,7 @@ export default function Register() {
         <div className="form-floating mb-3">
           <input
             type="email"
+            onChange={e => setEmail(e.target.value)}
             className="form-control"
             id="email"
             placeholder="name@example.com"
@@ -31,6 +37,7 @@ export default function Register() {
         <div className="form-floating mb-3">
           <input
             type="password"
+            onChange={e => setPassword(e.target.value)}
             className="form-control"
             id="password"
             placeholder="password"
@@ -38,6 +45,7 @@ export default function Register() {
           />
           <label htmlFor="password">Password</label>
         </div>
+        
         <button type="submit" className="btn btn-primary">
           Register
         </button>

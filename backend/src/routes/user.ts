@@ -1,20 +1,20 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, Router} from 'express';
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
 import User from '../models/User'
 import { UserInterface } from '../interfaces/UserInterface'
 
-const router = require("express").Router();
+const userRouter = Router();
 
 // Register user
-router.post('/register', async (req: Request, res: Response) => {
+userRouter.post('/register', async (req: Request, res: Response) => {
 
-  const { username, password } = req?.body
+  const { username, password, email } = req?.body
   if (!username || !passport || typeof username !== "string" || typeof password !== "string") {
     res.send('Invalid values!')
     return 
   } 
-  User.findOne({ username }, async (err: Error, doc: UserInterface) => {
+  User.findOne({ email }, async (err: Error, doc: UserInterface) => {
     if (err) throw err
     if (doc) res.send('User already exists')
     if (!doc) {
@@ -22,7 +22,8 @@ router.post('/register', async (req: Request, res: Response) => {
       // don't need to pass in the isAdmin because the default is set to false
       const newUser = new User({
         username,
-        password: hashedPassword
+        password: hashedPassword,
+        email
       })
       await newUser.save()
       res.send('Registration sucessful!')
@@ -32,12 +33,12 @@ router.post('/register', async (req: Request, res: Response) => {
 })
 
 // Log in user
-router.post('/login', passport.authenticate('local'), (req: Request, res: Response) => {
+userRouter.post('/login', passport.authenticate('local'), (req: Request, res: Response) => {
   res.send('Authentication Successful')
 })
 
 // Log out user
-router.get('/logout', function(req: Request, res: Response){
+userRouter.get('/logout', function(req: Request, res: Response){
   req.logout(function(err) {
     if (err) { return next(err); }
     res.send('Logout successful');
@@ -49,4 +50,4 @@ function next(err: any): void {
   throw new Error('Function not implemented.');
 }
 
-export = router
+export default userRouter

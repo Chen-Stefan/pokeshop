@@ -9,7 +9,7 @@ import session from 'express-session';
 import bcrypt from 'bcryptjs';
 import User from './models/User'
 import { UserInterface } from './interfaces/UserInterface'
-import * as userRoute from './routes/user';
+import userRouter from './routes/user';
 
 const LocalStrategy = passportLocal.Strategy
 
@@ -68,7 +68,7 @@ passport.use(new LocalStrategy((username: string, password: string, done) => {
  });
 
  // Other routes
- app.use('/', userRoute);
+ app.use('/', userRouter);
 
 
  app.listen(5000, () => {
