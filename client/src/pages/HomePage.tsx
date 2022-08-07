@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 export default function HomePage() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
+  const [error, sertError] = useState<string>("")
+   
   const login = () => {
     axios
       .post(
