@@ -1,17 +1,37 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const login = () => {
+    axios
+      .post(
+        "http://localhost:5000/login",
+        {
+          username,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        if (res.data === "Authentication Successful") {
+          window.location.href = "/landing";
+        }
+      });
+  };
+
   return (
     <>
       <div>
         Welcome to the Pokemon shop! This is an online shopping site where you
         can search, view and purchase the Pokemon cards you like. The Pokemon
-        data comes from the open source RESTful API created by pokemon lovers
+        data come from the open source RESTful API created by pokemon lovers
         wolrdwide.
       </div>
       <Container>
@@ -32,10 +52,10 @@ export default function HomePage() {
 
           <div className="col">
             <div className="jumbotron pt-3 mt-3" style={{ minWidth: "18rem" }}>
-              <form action="">
                 <div className="form-floating my-3">
                   <input
                     type="text"
+                    onChange={(e) => setUsername(e.target.value)}
                     className="form-control"
                     id="username"
                     placeholder="username"
@@ -46,6 +66,7 @@ export default function HomePage() {
                 <div className="form-floating mb-3">
                   <input
                     type="password"
+                    onChange={(e) => setPassword(e.target.value)}
                     className="form-control"
                     id="password"
                     placeholder="password"
@@ -54,7 +75,7 @@ export default function HomePage() {
                   <label htmlFor="password">Password</label>
                 </div>
                 <button
-                  type="submit"
+                  onClick={login}
                   style={{ backgroundColor: "#350661" }}
                   className="btn btn-primary"
                 >
@@ -65,8 +86,7 @@ export default function HomePage() {
                     Register
                   </button>
                 </Link>
-              </form>
-              <span id="error-message"></span>
+              {/* <span id="error-message"></span> */}
             </div>
           </div>
         </div>

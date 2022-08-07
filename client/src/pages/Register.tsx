@@ -20,7 +20,6 @@ export default function Register() {
   return (
     <div className="jumbotron">
       <h1>Register</h1>
-      <form action="">
         <div className="form-floating mb-3">
           <input
             type="text"
@@ -65,7 +64,6 @@ export default function Register() {
             Login
           </button>
         </Link>
-      </form>
     </div>
   );
 }

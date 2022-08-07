@@ -7,6 +7,7 @@ import Homepage from "./pages/HomePage";
 import Search from "./pages/Search";
 import Checkout from "./pages/Checkout";
 import Register from "./pages/Register";
+import Landing from "./pages/Landing";
 
 function App() {
   const ctx = useContext(myContext);
@@ -16,6 +17,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
+        <Route path="/landing" element={<Landing />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/search" element={<Search />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
