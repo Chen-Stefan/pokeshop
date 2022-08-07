@@ -1,26 +1,17 @@
 import React from "react";
+import twitter from "../assets/images/twitter.png";
+import facebook from "../assets/images/facebook.png";
+import instagram from "../assets/images/instagram.png";
 
 export default function Footer() {
   return (
-    <div className="logo_container">
-      <img
-        src="../assets/images/twitter.png"
-        alt="twitter"
-        width="50px"
-        height="50px"
-      />
-      <img
-        src="../assets/images/facebook.png"
-        alt="facebook"
-        width="50px"
-        height="50px"
-      />
-      <img
-        src="../assets/images/instagram.png"
-        alt="instagram"
-        width="50px"
-        height="50px"
-      />
+    <div style = {{position: "fixed", bottom: '10px', width: '100%', textAlign: 'center'}}>
+      <h6>Copyright &copy; Stefan's Pokemon Shop 2022</h6>
+      <div>
+        <img src={twitter} alt="twitter" width="50px" height="50px" />
+        <img src={facebook} alt="facebook" width="50px" height="50px" />
+        <img src={instagram} alt="instagram" width="50px" height="50px" />
+      </div>
     </div>
   );
 }

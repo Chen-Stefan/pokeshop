@@ -8,6 +8,7 @@ import Search from "./pages/Search";
 import Checkout from "./pages/Checkout";
 import Register from "./pages/Register";
 import Landing from "./pages/Landing";
+import Footer from "./components/Footer";
 
 function App() {
   const ctx = useContext(myContext);
@@ -22,6 +23,7 @@ function App() {
         <Route path="/search" element={<Search />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
