@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./styles/App.css";
-import Context, { myContext } from "./pages/Context";
+import Context, { userContext } from "./context/userContext"
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/HomePage";
 import Search from "./pages/Search";
@@ -11,19 +11,21 @@ import Landing from "./pages/Landing";
 import Footer from "./components/Footer";
 
 function App() {
-  const ctx = useContext(myContext);
+  const userCtx = useContext(userContext);
 
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Homepage />}></Route>
-        <Route path="/landing" element={<Landing />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/search" element={<Search />}></Route>
-        <Route path="/checkout" element={<Checkout />}></Route>
-      </Routes>
-      <Footer />
+      <Context>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />}></Route>
+          <Route path="/landing" element={<Landing />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/search" element={<Search />}></Route>
+          <Route path="/checkout" element={<Checkout />}></Route>
+        </Routes>
+        <Footer />
+      </Context>
     </BrowserRouter>
   );
 }

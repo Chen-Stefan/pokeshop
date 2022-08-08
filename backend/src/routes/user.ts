@@ -37,6 +37,11 @@ userRouter.post('/login', passport.authenticate('local'), (req: Request, res: Re
   res.send('Authentication Successful')
 })
 
+// Get logged in user 
+userRouter.get('/user', (req, res) => {
+  res.send(req.user)
+})
+
 // Log out user
 userRouter.get('/logout', function(req: Request, res: Response){
   req.logout(function(err) {
@@ -44,7 +49,6 @@ userRouter.get('/logout', function(req: Request, res: Response){
     res.send('Logout successful');
   });
 });
-
 
 function next(err: any): void {
   throw new Error('Function not implemented.');
