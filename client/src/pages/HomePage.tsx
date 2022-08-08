@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function HomePage() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, sertError] = useState<string>("")
+  const [error, setError] = useState<string>("")
    
   const login = () => {
     axios
@@ -53,6 +53,7 @@ export default function HomePage() {
 
           <div className="col">
             <div className="jumbotron pt-3 mt-3" style={{ minWidth: "18rem" }}>
+              {/* Login Error */}
                 <div className="form-floating my-3">
                   <input
                     type="text"
