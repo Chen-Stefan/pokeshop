@@ -14,12 +14,11 @@ userRouter.post('/register', async (req: Request, res: Response) => {
     res.send('Invalid values!')
     return 
   } 
-  User.findOne({ email }, async (err: Error, doc: UserInterface) => {
+  User.findOne({ username, email }, async (err: Error, doc: UserInterface) => {
     if (err) throw err
     if (doc) res.send('User already exists')
     if (!doc) {
       const hashedPassword = await bcrypt.hash(req.body.password, 10)
-      // don't need to pass in the isAdmin because the default is set to false
       const newUser = new User({
         username,
         password: hashedPassword,

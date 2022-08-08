@@ -11,7 +11,6 @@ import Landing from "./pages/Landing";
 import Footer from "./components/Footer";
 
 function App() {
-  const userCtx = useContext(userContext);
 
   return (
     <BrowserRouter>

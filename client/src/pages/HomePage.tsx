@@ -23,6 +23,8 @@ export default function HomePage() {
       .then((res) => {
         if (res.data === "Authentication Successful") {
           window.location.href = "/landing";
+        } else {
+          
         }
       });
   };
