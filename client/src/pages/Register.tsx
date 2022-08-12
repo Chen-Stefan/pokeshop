@@ -9,8 +9,12 @@ export default function Register() {
   const [successMsg, setSuccessMsg] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<string>("");
 
-  const register = () => {
-    axios
+  const handleRegister = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    setErrorMsg('');
+    
+    try {
+      axios
       .post(
         "http://localhost:5000/register",
         {
@@ -22,20 +26,27 @@ export default function Register() {
           withCredentials: true,
         }
       )
-      .then((res) => {
-        if (res.data === "User already exists") {
-          setErrorMsg("User already exists, please try again");
-        } else {
-          setSuccessMsg('Registration successful, please log in')
-        }
-      });
-  };
+      .then(res => setSuccessMsg(res.data))
+    } catch (error: any) {
+      setErrorMsg(error.response.data.message);
+    }
+
+};
+      
+ 
+  // (res) => {
+  //   if (res.data === "User already exists") {
+  //     setErrorMsg("User already exists, please try again");
+  //   } else {
+  //     setSuccessMsg("Registration successful, please log in");
+  //   }
+  // };
 
   return (
     <div className="jumbotron">
       <h1>Register</h1>
-      <span>{successMsg}</span>
-      <span>{errorMsg}</span>
+      <span style={{color: 'green'}}>{successMsg}</span>
+      <span style={{color: 'red'}}>{errorMsg}</span>
       <div className="form-floating mb-3">
         <input
           type="text"
@@ -72,7 +83,7 @@ export default function Register() {
         <label htmlFor="password">Password</label>
       </div>
 
-      <button onClick={register} className="btn btn-primary">
+      <button onClick={handleRegister} className="btn btn-primary">
         Register
       </button>
       <Link to="/">
