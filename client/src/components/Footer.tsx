@@ -5,7 +5,7 @@ import instagram from "../assets/images/instagram.png";
 
 export default function Footer() {
   return (
-    <div style = {{position: "fixed", bottom: '10px', width: '100%', textAlign: 'center'}}>
+    <div style = {{position: "relative", bottom: '10px', width: '100%', textAlign: 'center'}}>
       <h6>Copyright &copy; Stefan's Pokemon Shop 2022</h6>
       <div>
         <img src={twitter} alt="twitter" width="50px" height="50px" />

@@ -1,4 +1,5 @@
 import React from "react";
+import PokemonGrid from "../components/PokemonGrid";
 
 export default function Search() {
   const handleFilterByType = () => {};
@@ -35,6 +36,8 @@ export default function Search() {
           />
         </div>
       </div>
+
+      <PokemonGrid />
     </>
   );
 }
