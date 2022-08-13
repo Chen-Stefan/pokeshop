@@ -102,7 +102,7 @@ export default function PokemonProfile(): JSX.Element {
   }
 
   return (
-    <div className="col m-2">
+    <div className="col mt-2 mb-3">
       <div className="card">
         <div className="card-header">
           <div className="row">
@@ -146,7 +146,7 @@ export default function PokemonProfile(): JSX.Element {
                 style= {{width: "180px", height: "180px"}}
               />
             </div>
-            <div className="row mt-1">
+            <div className="row">
               <div className="col fs-5 fw-bold">
                 <p>{description}</p>
               </div>
@@ -156,7 +156,7 @@ export default function PokemonProfile(): JSX.Element {
                 <div className="col-12 col-md-3">HP</div>
                 <div className="col-12 col-md-9">
                   <div className="progress">
-                    {/* <div
+                    <div
                       className="progress-bar"
                       role="progressBar"
                       style={{
@@ -164,10 +164,9 @@ export default function PokemonProfile(): JSX.Element {
                       }}
                       area-valuenow="25"
                       area-aria-valuemin="0"
-                      aria-valuemax="100"
                     >
                       <small>{hp}</small>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -175,7 +174,7 @@ export default function PokemonProfile(): JSX.Element {
                 <div className="col-12 col-md-3">Attack</div>
                 <div className="col-12 col-md-9">
                   <div className="progress">
-                    {/* <div
+                    <div
                       className="progress-bar"
                       role="progressBar"
                       style={{
@@ -183,10 +182,9 @@ export default function PokemonProfile(): JSX.Element {
                       }}
                       area-valuenow="25"
                       area-aria-valuemin="0"
-                      aria-valuemax="100"
                     >
                       <small>{attack}</small>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -194,7 +192,7 @@ export default function PokemonProfile(): JSX.Element {
                 <div className="col-12 col-md-3">Defense</div>
                 <div className="col-12 col-md-9">
                   <div className="progress">
-                    {/* <div
+                    <div
                       className="progress-bar"
                       role="progressBar"
                       style={{
@@ -202,10 +200,9 @@ export default function PokemonProfile(): JSX.Element {
                       }}
                       area-valuenow="25"
                       area-aria-valuemin="0"
-                      aria-valuemax="100"
                     >
                       <small>{defense}</small>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -213,7 +210,7 @@ export default function PokemonProfile(): JSX.Element {
                 <div className="col-12 col-md-3">Speed</div>
                 <div className="col-12 col-md-9">
                   <div className="progress">
-                    {/* <div
+                    <div
                       className="progress-bar"
                       role="progressBar"
                       style={{
@@ -221,10 +218,9 @@ export default function PokemonProfile(): JSX.Element {
                       }}
                       area-valuenow="25"
                       area-aria-valuemin="0"
-                      aria-valuemax="100"
                     >
                       <small>{speed}</small>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -232,7 +228,7 @@ export default function PokemonProfile(): JSX.Element {
                 <div className="col-12 col-md-3">Special Attack</div>
                 <div className="col-12 col-md-9">
                   <div className="progress">
-                    {/* <div
+                    <div
                       className="progress-bar"
                       role="progressBar"
                       style={{
@@ -240,10 +236,9 @@ export default function PokemonProfile(): JSX.Element {
                       }}
                       area-valuenow="25"
                       area-aria-valuemin="0"
-                      aria-valuemax="100"
                     >
                       <small>{specialAttack}</small>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -251,7 +246,7 @@ export default function PokemonProfile(): JSX.Element {
                 <div className="col-12 col-md-3">Special Defense</div>
                 <div className="col-12 col-md-9">
                   <div className="progress">
-                    {/* <div
+                    <div
                       className="progress-bar"
                       role="progressBar"
                       style={{
@@ -259,10 +254,9 @@ export default function PokemonProfile(): JSX.Element {
                       }}
                       area-valuenow="25"
                       area-aria-valuemin="0"
-                      aria-valuemax="100"
                     >
                       <small>{specialDefense}</small>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
