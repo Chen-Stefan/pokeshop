@@ -50,8 +50,9 @@ export default function PokemonProfile(): JSX.Element {
     const pokemonRes = await axios.get(pokemonUrl);
     // Set name, pokemonIndex, imageUrl
     setName(pokemonRes.data.name);
-
-    setImageUrl(pokemonRes.data.sprites.front_default);
+    
+    const officialImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonIndex}.png`
+    setImageUrl(officialImageUrl);
 
     // set pokemon types
     const pokemonTypes = pokemonRes.data.types.map(
@@ -101,7 +102,7 @@ export default function PokemonProfile(): JSX.Element {
   }
 
   return (
-    <div className="col">
+    <div className="col m-2">
       <div className="card">
         <div className="card-header">
           <div className="row">
@@ -115,7 +116,7 @@ export default function PokemonProfile(): JSX.Element {
               </h4>
             </div>
             <div className="col-7">
-              <div className="float-end">
+              <div className="float-start">
                 {types.map((type: string) => (
                   <span
                     key={type}
@@ -142,7 +143,13 @@ export default function PokemonProfile(): JSX.Element {
               <img
                 src={imageUrl}
                 className="card-img-top rounded mx-auto mt-2"
+                style= {{width: "180px", height: "180px"}}
               />
+            </div>
+            <div className="row mt-1">
+              <div className="col fs-5 fw-bold">
+                <p>{description}</p>
+              </div>
             </div>
             <div className="col-md-9">
               <div className="row align-items-center">
@@ -260,11 +267,7 @@ export default function PokemonProfile(): JSX.Element {
                 </div>
               </div>
             </div>
-            <div className="row mt-1">
-              <div className="col">
-                <p>{description}</p>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>

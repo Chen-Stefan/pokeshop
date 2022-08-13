@@ -95,7 +95,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div className="d-flex justify-content-center mt-3">
+        <div className="d-flex justify-content-center m-3">
       <img src={pikachu} style={{width: '400px', height: '280px'}}/>
       </div>
       </Container>
