@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PokemonCard from "../components/PokemonCard";
 
-function App() {
+export default function PokemonGrid() {
   const [allPokemons, setAllPokemons] = useState<any[]>([]);
   const [loadMore, setLoadMore] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=20"
@@ -31,7 +31,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container">
+    <div className="PokemonGrid-container">
       <div className="pokemon-container">
         <div className="all-container">
           {allPokemons.map((pokemon: any, index) => (
@@ -50,4 +50,3 @@ function App() {
   );
 }
 
-export default App;
