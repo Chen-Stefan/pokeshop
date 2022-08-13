@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import pikachu from '../assets/images/pikachu.gif'
 
 export default function HomePage() {
   const [username, setUsername] = useState<string>("");
@@ -32,13 +33,13 @@ export default function HomePage() {
   return (
     <>
       <div>
-        Welcome to the Pokemon shop! This is an online shopping site where you
+        Welcome to My Pokemon shop! This is an online shopping site where you
         can search, view and purchase the Pokemon cards you like. The Pokemon
         data come from the open source RESTful API created by pokemon lovers
         wolrdwide.
       </div>
       <Container>
-        <div className="row mt-5">
+        <div className="row mt-3">
           <div className="col">
             <div
               className="jumbotron jumbotron-fluid mt-3"
@@ -94,7 +95,12 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <div className="d-flex justify-content-center mt-3">
+      <img src={pikachu} style={{width: '400px', height: '280px'}}/>
+      </div>
       </Container>
+     
+
     </>
   );
 }

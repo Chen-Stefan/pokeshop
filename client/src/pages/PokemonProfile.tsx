@@ -23,7 +23,7 @@ const TYPE_COLORS: { [key: string]: any } = {
   water: "#55AEFF",
 };
 
-export default function PokemonProfile(props: any): JSX.Element {
+export default function PokemonProfile(): JSX.Element {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [types, setTypes] = useState([]);
