@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const TYPE_COLORS: { [key: string]: any } = {
   bug: "#C2D020",
@@ -24,7 +25,6 @@ const TYPE_COLORS: { [key: string]: any } = {
 
 export default function PokemonProfile(props: any): JSX.Element {
   const [name, setName] = useState("");
-  const [pokemonIndex, setPokemonIndex] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [types, setTypes] = useState([]);
   const [description, setDescription] = useState("");
@@ -36,19 +36,21 @@ export default function PokemonProfile(props: any): JSX.Element {
   const [specialDefense, setSpecialDefense] = useState("");
 
   //URLs for pokemon information
+  const params = useParams();
+  const pokemonIndex = params.pokemonIndex;
   const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonIndex}`;
   const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonIndex}`;
 
   // Grab pokemon data
   useEffect(() => {
-    getPokemonData()
+    getPokemonData();
   }, []);
 
   async function getPokemonData() {
     const pokemonRes = await axios.get(pokemonUrl);
     // Set name, pokemonIndex, imageUrl
     setName(pokemonRes.data.name);
-    setPokemonIndex(props.match.params);
+
     setImageUrl(pokemonRes.data.sprites.front_default);
 
     // set pokemon types
@@ -104,7 +106,13 @@ export default function PokemonProfile(props: any): JSX.Element {
         <div className="card-header">
           <div className="row">
             <div className="col-5">
-              <h5>{name}</h5>
+              <h4 className="mx-auto">
+                {name
+                  .toLowerCase()
+                  .split(" ")
+                  .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+                  .join(" ")}
+              </h4>
             </div>
             <div className="col-7">
               <div className="float-end">
@@ -137,13 +145,6 @@ export default function PokemonProfile(props: any): JSX.Element {
               />
             </div>
             <div className="col-md-9">
-              <h4 className="mx-auto">
-                {name
-                  .toLowerCase()
-                  .split(" ")
-                  .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-                  .join(" ")}
-              </h4>
               <div className="row align-items-center">
                 <div className="col-12 col-md-3">HP</div>
                 <div className="col-12 col-md-9">

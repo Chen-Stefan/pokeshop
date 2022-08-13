@@ -22,7 +22,7 @@ function App() {
           <Route path="/landing" element={<Landing />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/search" element={<Search />}></Route>
-          <Route path="/pokemon/:pokemonIndex" element={<PokemonProfile />}></Route>
+          <Route path="/search/pokemon/:pokemonIndex" element={<PokemonProfile />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
         </Routes>
         <Footer />
