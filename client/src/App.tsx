@@ -9,6 +9,7 @@ import Checkout from "./pages/Checkout";
 import Register from "./pages/Register";
 import Landing from "./pages/Landing";
 import Footer from "./components/Footer";
+import PokemonProfile from "./pages/PokemonProfile";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/landing" element={<Landing />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/search" element={<Search />}></Route>
+          <Route path="/pokemon/:pokemonIndex" element={<PokemonProfile />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
         </Routes>
         <Footer />
