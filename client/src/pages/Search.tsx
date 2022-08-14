@@ -1,3 +1,4 @@
+import { AppBar, TextField, Toolbar } from "@mui/material";
 import React from "react";
 import PokemonGrid from "../components/PokemonGrid";
 
@@ -28,12 +29,20 @@ export default function Search() {
         </div>
 
         <div className="filter__items">
-          <label>Search by name</label>
-          <input
-            type="text"
-            value=""
-            onChange={handleSearchByName}
-          />
+          {/* <label>Search by name</label> */}
+          <AppBar position="static">
+        <Toolbar>
+          <div className={classes.searchContainer}>
+            <SearchIcon className={classes.searchIcon} />
+            <TextField
+              onChange={handleSearchChange}
+              className={classes.searchInput}
+              label="Pokemon"
+              variant="standard"
+            />
+          </div>
+        </Toolbar>
+      </AppBar>
         </div>
       </div>
 
