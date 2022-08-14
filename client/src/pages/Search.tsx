@@ -1,13 +1,19 @@
 import { AppBar, TextField, Toolbar } from "@mui/material";
-import React from "react";
+import SearchIcon from "@mui/icons-material/Search";
+import React, { useState } from "react";
 import PokemonGrid from "../components/PokemonGrid";
 
 export default function Search() {
+  const [filter, setFilter] = useState("");
   const handleFilterByType = () => {};
 
   const handleFilterByRegion = () => {};
 
-  const handleSearchByName = () => {};
+  const handleSearchChange = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setFilter(e.target.value);
+  };
 
   return (
     <>
@@ -28,22 +34,17 @@ export default function Search() {
           ></select>
         </div>
 
-        <div className="filter__items">
-          {/* <label>Search by name</label> */}
-          <AppBar position="static">
-        <Toolbar>
-          <div className={classes.searchContainer}>
-            <SearchIcon className={classes.searchIcon} />
-            <TextField
-              onChange={handleSearchChange}
-              className={classes.searchInput}
-              label="Pokemon"
-              variant="standard"
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
+        {/* <div className="filter__items"> */}
+        <div style={{ marginTop: "-15px" }}>
+          <TextField
+            onChange={handleSearchChange}
+            className="searchInput"
+            label="Search     "
+            variant="standard"
+          />
+          <SearchIcon style={{ marginTop: "20px", paddingRight: "2px" }} />
         </div>
+        {/* </div> */}
       </div>
 
       <PokemonGrid />
