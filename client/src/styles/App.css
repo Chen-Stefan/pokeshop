@@ -1,5 +1,6 @@
 @import-normalize;
 @import 'search.css';
+@import 'pokemonCard.css';
 
 * {
 	margin: 0px 3px;

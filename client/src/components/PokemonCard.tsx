@@ -14,17 +14,23 @@ export default function PokemonCard({
 }) {
   const style = `thumb-container ${type}`;
   return (
-    <Link style={{color: 'black', textDecoration: 'none'}} to={`pokemon/${id}`}>
-      <div className= {style}>
-        <div className="style">
-          <small>#0{id}</small>
-        </div>
+    <div className={style}>
+      {/* <div className="style">
+      <small>#0{id}</small>
+    </div> */}
+      <Link
+        style={{ color: "black", textDecoration: "none" }}
+        to={`pokemon/${id}`}
+      >
         <img src={image} alt={name} />
         <div className="detail-wrapper">
           <h3>{name}</h3>
           <small>Type: {type}</small>
         </div>
-      </div>
-    </Link>
+      </Link>
+      <button className="add-to-cart-button button-primary button-purchase" type="button">
+        Add to cart
+      </button>
+    </div>
   );
 }

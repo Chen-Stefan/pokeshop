@@ -1,0 +1,24 @@
+.add-to-cart-button {
+	text-align: center;
+	vertical-align: middle;
+	padding: 0.5em;
+	cursor: pointer;
+}
+
+.button-primary {
+	color: white;
+	background-color: hsl(195, 100%, 50%);
+	border: none;
+	border-radius: .3em;
+	font-weight: bold;
+}
+
+.button-primary:hover {
+  background-color: hsl(200, 100%, 30%);
+}
+
+.button-purchase {
+	display: block;
+	margin: 10px auto 0 auto;
+	font-size: 1em;
+}
