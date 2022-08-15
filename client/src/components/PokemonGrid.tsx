@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { PropTypes } from "@mui/material";
+import { PropsWithChildren, useEffect, useState } from "react";
 import PokemonCard from "../components/PokemonCard";
 
-export default function PokemonGrid() {
+export default function PokemonGrid ({ filter }: any) {
   const [allPokemons, setAllPokemons] = useState<any[]>([]);
   const [loadMore, setLoadMore] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=20"
@@ -35,6 +36,7 @@ export default function PokemonGrid() {
       <div className="pokemon-container">
         <div className="all-container">
           {allPokemons.map((pokemon: any, index) => (
+            pokemon.name.includes(filter) &&
             <PokemonCard
               id={pokemon.id}
               name={pokemon.name}

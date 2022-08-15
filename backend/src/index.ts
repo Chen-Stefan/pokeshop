@@ -67,7 +67,7 @@ passport.use(new LocalStrategy((username: string, password: string, done) => {
    });
  });
 
- // Other routes
+ // Routes
  app.use('/', userRouter);
 
 
