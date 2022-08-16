@@ -12,6 +12,8 @@ export default function PokemonCard({
   image: string;
   type: string;
 }) {
+  // 临时数据 
+  let quantity = 0
   const style = `thumb-container ${type}`;
   return (
     <div className={style}>
