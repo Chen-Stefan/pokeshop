@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
 
-export const userContext = createContext<any>({})
-export default function Context(props: PropsWithChildren<any>) {
+export const UserContext = createContext<any>({})
+export default function UserInfoProvider(props: PropsWithChildren<any>) {
   const [user, setUser] = useState<any>()
   // useEffect will render on every state change
   useEffect(() => {
@@ -11,6 +11,6 @@ export default function Context(props: PropsWithChildren<any>) {
     })
   }, [])
   return (
-    <userContext.Provider value={user}>{props.children}</userContext.Provider>
+    <UserContext.Provider value={user}>{props.children}</UserContext.Provider>
   )
 }

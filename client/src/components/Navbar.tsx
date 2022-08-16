@@ -3,10 +3,10 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import pokeball from "../assets/images/pokeball.webp";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import { userContext } from '../context/userContext'
+import { UserContext } from '../context/UserInfoContext'
 
 export default function Navbar() {
-  const userCtx = useContext(userContext)
+  const userCtx = useContext(UserContext)
   const { openCart, cartQuantity } = useShoppingCart();
 
   return (
