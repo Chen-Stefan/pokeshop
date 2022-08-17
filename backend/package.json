@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
@@ -20,7 +21,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.7",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "stripe": "^10.2.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
