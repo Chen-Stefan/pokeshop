@@ -21,13 +21,13 @@ type ShoppingCartContext = {
   cartQuantity: number;
   cartItems: CartItem[];
 };
-// ShoppingCartContext contains 上面4个value as its types
+// ShoppingCartContext contains 上面 8个value as its types
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
 
 export function useShoppingCart() {
   return useContext(ShoppingCartContext);
 }
-
+// 所有的function 和 variable 都在ShoppingCartProvider这个context里面
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart',[]);
@@ -45,6 +45,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   }
 
   function increaseCartQuantity(id: number) {
+    // If item not in cart, add item to curritem; if item in cart, increase quantity by 1 
     setCartItems((currentItems) => {
       if (currentItems.find((item) => item.id === id) == null) {
         return [...currentItems, { id, quantity: 1 }];

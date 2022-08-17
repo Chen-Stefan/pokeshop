@@ -7,7 +7,7 @@ type CartItemProps = {
   id: number;
   quantity: number;
 };
-
+// 这里的item 是 hardcode data
 export function CartItem({ id, quantity }: CartItemProps) {
   const { RemoveFromCart } = useShoppingCart();
   const item = storeItems.find((item) => item.id === id);

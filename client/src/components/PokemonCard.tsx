@@ -1,5 +1,7 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export default function PokemonCard({
   id,
@@ -12,14 +14,18 @@ export default function PokemonCard({
   image: string;
   type: string;
 }) {
-  // 临时数据 
-  let quantity = 0
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    RemoveFromCart,
+  } = useShoppingCart();
+
+  const quantity = getItemQuantity(id);
   const style = `thumb-container ${type}`;
   return (
     <div className={style}>
-      {/* <div className="style">
-      <small>#0{id}</small>
-    </div> */}
+     
       <Link
         style={{ color: "black", textDecoration: "none" }}
         to={`pokemon/${id}`}
@@ -27,12 +33,35 @@ export default function PokemonCard({
         <img src={image} alt={name} />
         <div className="detail-wrapper">
           <h3>{name}</h3>
-          <small>Type: {type}</small>
         </div>
       </Link>
-      <button className="add-to-cart-button button-primary button-purchase" type="button">
-        Add to cart
-      </button>
+      {quantity === 0 ? (
+        <button
+          className="add-to-cart-button button-primary button-purchase"
+          type="button"
+        >
+          Add to cart
+        </button>
+      ) : (
+        <div
+          className="d-flex align-items-center flex-column"
+          style={{ gap: "0.5rem" }}
+        >
+          <div
+            className="d-flex align-items-center justify-content-center"
+            style={{ gap: "0.5rem" }}
+          >
+            <button onClick={() => decreaseCartQuantity(id)}>-</button>
+            <div>
+              <span className="fs-3">{quantity}</span> in cart
+            </div>
+            <button onClick={() => increaseCartQuantity(id)}>+</button>
+          </div>
+          <Button variant="danger" size="sm" onClick={() => RemoveFromCart(id)}>
+            Remove
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
