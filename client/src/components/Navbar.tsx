@@ -19,7 +19,7 @@ export default function Navbar() {
 
       <div className="menu">
         <Link to="/">Home</Link>
-        {userCtx && <Link to="/search">Search</Link>}
+        {userCtx && <Link to="/store">Store</Link>}
         <Button
           onClick={openCart}
           style={{ width: "3.2rem", height: "3.2rem", position: "relative" }}

@@ -4,7 +4,7 @@ import "./styles/App.css";
 import UserInfoProvider, { UserContext } from "./context/UserInfoContext";
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/HomePage";
-import Search from "./pages/Search";
+import Store from "./pages/Store";
 import Checkout from "./pages/Checkout";
 import Register from "./pages/Register";
 import Landing from "./pages/Landing";
@@ -22,9 +22,9 @@ function App() {
             <Route path="/" element={<Homepage />}></Route>
             <Route path="/landing" element={<Landing />}></Route>
             <Route path="/register" element={<Register />}></Route>
-            <Route path="/search" element={<Search />}></Route>
+            <Route path="/store" element={<Store />}></Route>
             <Route
-              path="/search/pokemon/:pokemonIndex"
+              path="/store/pokemon/:pokemonIndex"
               element={<PokemonProfile />}
             ></Route>
             <Route path="/checkout" element={<Checkout />}></Route>

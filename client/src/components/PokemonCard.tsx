@@ -32,6 +32,7 @@ export default function PokemonCard({
       >
         <img src={image} alt={name} />
         <div className="detail-wrapper">
+          {id}
           <h3>{name}</h3>
         </div>
       </Link>
