@@ -1,6 +1,7 @@
 @import-normalize;
 @import 'search.css';
 @import 'pokemonCard.css';
+@import 'stripe.css';
 
 * {
 	margin: 0px 3px;
