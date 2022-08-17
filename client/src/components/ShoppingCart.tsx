@@ -2,7 +2,7 @@ import { Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
-import storeItems from "../data/items.json";
+import storeItems from "../data/pokemonItems.json";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -22,7 +22,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
             <CartItem key={item.id} {...item} />
           ))}
           <div className="ms-auto fw-bold fs-5">
-            Total
+            Total{" "}
             {formatCurrency(
               cartItems.reduce((total, cartItem) => {
                 const item = storeItems.find((item) => item.id === cartItem.id);
