@@ -38,6 +38,7 @@ export default function PokemonCard({
       {quantity === 0 ? (
         <button
           className="add-to-cart-button button-primary button-purchase"
+          onClick={() => increaseCartQuantity(id)}
           type="button"
         >
           Add to cart
