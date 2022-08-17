@@ -57,13 +57,13 @@ export default function PaymentForm() {
   return ( 
   <>
     {!success ? 
-    <form onSubmit={handlePaymentSubmit}>
-      <fieldset className="FormGroup">
+    <form onSubmit={handlePaymentSubmit} className='mt-5'>
+      <fieldset className="FormGroup w-50 mx-auto">
         <div className="FormRow">
           <CardElement options={CARD_OPTIONS} />
         </div>
       </fieldset>
-      <button>Pay</button>
+      <button style={{width: "10%", marginBottom:"100px"}} className="checkout mt-5 mx-auto">Pay</button>
     </form> : 
     <div>
       <h2>Order has been placed, thank you!</h2>

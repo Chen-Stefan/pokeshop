@@ -5,12 +5,12 @@ import UserInfoProvider, { UserContext } from "./context/UserInfoContext";
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/HomePage";
 import Store from "./pages/Store";
-import Checkout from "./pages/Checkout";
 import Register from "./pages/Register";
 import Landing from "./pages/Landing";
 import Footer from "./components/Footer";
 import PokemonProfile from "./pages/PokemonProfile";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import StripeContainer from "./components/StripeContainer";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
               path="/store/pokemon/:pokemonIndex"
               element={<PokemonProfile />}
             ></Route>
-            <Route path="/checkout" element={<Checkout />}></Route>
+            <Route path="/checkout" element={<StripeContainer />}></Route>
           </Routes>
           <Footer />
         </UserInfoProvider>

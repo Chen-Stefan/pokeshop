@@ -3,6 +3,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
 import storeItems from "../data/pokemonItems.json";
+import { Link } from "react-router-dom";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -30,6 +31,8 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
               }, 0)
             )}
           </div>
+          <Link to={"/checkout"} style={{textDecoration: "none"}}><button className='checkout'>Checkout</button></Link>
+          
         </Stack>
       </Offcanvas.Body>
     </Offcanvas>
