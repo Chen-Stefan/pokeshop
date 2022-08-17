@@ -11,8 +11,6 @@ const stripeTestPromise = loadStripe(PUBLIC_KEY)
 export default function StripeContainer() {
   return (
     <Elements stripe={stripeTestPromise} >
-     
-      
       <PaymentForm />
       <div className="d-flex justify-content-center m-5">
       <img src={pikachu} className='' style={{width: '350px', height: '280px'}}/>

@@ -63,7 +63,7 @@ export default function PaymentForm() {
           <CardElement options={CARD_OPTIONS} />
         </div>
       </fieldset>
-      <button style={{width: "10%", marginBottom:"100px"}} className="checkout mt-5 mx-auto">Pay</button>
+      <button style={{width: "10%", marginBottom:"100px"}} className="checkout mt-5 mx-auto">Place Order</button>
     </form> : 
     <div>
       <h2>Order has been placed, thank you!</h2>

@@ -1,8 +1,7 @@
-import { Request, Response, NextFunction, Router } from "express";
+import { Request, Response, Router } from "express";
 import passport from "passport";
 import bcrypt from "bcryptjs";
 import User from "../models/User";
-import { UserInterface } from "../interfaces/UserInterface";
 
 const userRouter = Router();
 

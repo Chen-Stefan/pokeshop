@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 import mongoose, { Error } from 'mongoose';
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
+import bodyParser from 'body-parser'
 import cors from 'cors';
 import passport from 'passport';
 import passportLocal from 'passport-local';
@@ -8,8 +9,8 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import bcrypt from 'bcryptjs';
 import User from './models/User'
-import { UserInterface } from './interfaces/UserInterface'
 import userRouter from './routes/user';
+import paymentRoute from './routes/payment'
 
 const LocalStrategy = passportLocal.Strategy
 
@@ -24,6 +25,8 @@ mongoose.connect(`${process.env.MONGO_URI}`, {
 // Middleware
 const app = express();
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 app.use(cors({ origin: "http://localhost:3000", credentials: true }))
 app.use(
   session({
@@ -69,7 +72,7 @@ passport.use(new LocalStrategy((username: string, password: string, done) => {
 
  // Routes
  app.use('/', userRouter);
-
+ app.use('/', paymentRoute)
 
  app.listen(5000, () => {
    console.log('Server Started')
