@@ -1,17 +1,19 @@
 import * as dotenv from "dotenv";
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import cors from 'cors';
 
-const stripe = require("stripe")(`${process.env.STRIPE_SECRET_TEST}`)
+dotenv.config();
+
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
 
 const paymentRoute = Router();
 
 paymentRoute.post("/payment", cors(), async (req, res) => {
   let {amount, id} = req.body
   try {
-    const payment = await stripe.paymentIntense.create({
+    const payment = await stripe.paymentIntents.create({
       amount,
-      currency: "CAD",
+      currency: "USD",
       description: "Stefan's Pokeshop",
       payment_method: id,
       confirm: true

@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 
 const CARD_OPTIONS: any = {
 	iconStyle: "solid",
@@ -66,7 +66,7 @@ export default function PaymentForm({ amount }: any) {
       </fieldset>
       <button style={{width: "10%", marginBottom:"100px"}} className="checkout mt-5 mx-auto">Place Order</button>
     </form> : 
-    <div>
+    <div className="text-center">
       <h2>Order has been placed, thank you!</h2>
       </div>}
   </>

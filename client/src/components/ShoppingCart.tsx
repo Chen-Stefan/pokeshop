@@ -18,12 +18,12 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
 
   const navigate = useNavigate();
   const handleNavigateToCheckout = (e: any) => {
-    navigate('/checkout', {
+    navigate("/checkout", {
       state: {
-        paymentAmount: totalPrice
-      }
-    })
-  }
+        paymentAmount: totalPrice,
+      },
+    });
+  };
 
   return (
     // Offcanvas is the sliding effect
@@ -39,10 +39,10 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
           <div className="ms-auto fw-bold fs-5">
             Total CAD {formatCurrency(totalPrice)}
           </div>
-
-          
         </Stack>
-        <button onClick={handleNavigateToCheckout} className="checkout">Checkout</button>
+        <button onClick={handleNavigateToCheckout} className="checkout">
+          Checkout
+        </button>
       </Offcanvas.Body>
     </Offcanvas>
   );
