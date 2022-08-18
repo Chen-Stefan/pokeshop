@@ -22,10 +22,11 @@ const CARD_OPTIONS: any = {
 	}
 }
 
-export default function PaymentForm() {
+export default function PaymentForm({ amount }: any) {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const paymentAmount = amount.paymentAmount
 
   const handlePaymentSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -39,7 +40,7 @@ export default function PaymentForm() {
       try {
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:5000/payment", {
-          amount: 1000,
+          amount: paymentAmount * 100,
           id,
         });
 

@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 import { Request, Response, Router } from "express";
 import cors from 'cors';
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
+const stripe = require("stripe")(`${process.env.STRIPE_SECRET_TEST}`)
 
 const paymentRoute = Router();
 
