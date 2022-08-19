@@ -4,11 +4,35 @@ import React, { ChangeEvent, useState } from "react";
 import PokemonGrid from "../components/PokemonGrid";
 
 export default function Search() {
+  const options = [
+    {value: '', text: '--Choose a Type--'},
+    {value: 'Normal', text: 'Normal'},
+    {value: 'Fighting', text: 'Fighting'},
+    {value: 'Flying', text: 'Flying'},
+    {value: 'Ground', text: 'Ground'},
+    {value: 'Rock', text: 'Rock'},
+    {value: 'Bug', text: 'Bug'},
+    {value: 'Ghost', text: 'Ghost'},
+    {value: 'Steel', text: 'Steel'},
+    {value: 'Fire', text: 'Fire'},
+    {value: 'Water', text: 'Water'},
+    {value: 'Grass', text: 'Grass'},
+    {value: 'Electric', text: 'Electric'},
+    {value: 'Psychic', text: 'Psychic'},
+    {value: 'Ice', text: 'Ice'},
+    {value: 'Dragon', text: 'Dragon'},
+    {value: 'Dark', text: 'Dark'},
+    {value: 'Fairy', text: 'Fairy'}
+  ];
   const [nameFilter, setNameFilter] = useState("");
-  const handleFilterByType = () => {};
+  const [selected, setSelected] = useState(options[0].value)
   
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setNameFilter(e.target.value);
+  const handleSelectedChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelected(event.target.value);
+  };
+  
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNameFilter(event.target.value);
   };
 
   return (
@@ -17,7 +41,7 @@ export default function Search() {
         <div className="filter__items">
           <div>Type</div>
           <select
-            onChange={handleFilterByType}
+            onChange={handleSelectedChange}
             style={{fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif", fontSize: "16px"}}
           >
             <option value="All types">All Types</option>
