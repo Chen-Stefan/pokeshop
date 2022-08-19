@@ -3,10 +3,10 @@ import { PropsWithChildren, useEffect, useState } from "react";
 import PokemonCard from "../components/PokemonCard";
 
 type PokemonGridProps = {
-  filter: string
+  nameFilter: string
 };
 
-export default function PokemonGrid ({ filter }: PokemonGridProps) {
+export default function PokemonGrid ({ nameFilter }: PokemonGridProps) {
   const [allPokemons, setAllPokemons] = useState<any[]>([]);
   const [loadMore, setLoadMore] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=20"
@@ -40,7 +40,7 @@ export default function PokemonGrid ({ filter }: PokemonGridProps) {
       <div className="pokemon-container">
         <div className="all-container">
           {allPokemons.map((pokemon: any, index) => (
-            pokemon.name.startsWith(filter) &&
+            pokemon.name.startsWith(nameFilter) &&
             <PokemonCard
               id={pokemon.id}
               name={pokemon.name}

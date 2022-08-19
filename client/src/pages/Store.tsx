@@ -4,13 +4,11 @@ import React, { ChangeEvent, useState } from "react";
 import PokemonGrid from "../components/PokemonGrid";
 
 export default function Search() {
-  const [filter, setFilter] = useState("");
+  const [nameFilter, setNameFilter] = useState("");
   const handleFilterByType = () => {};
-
-  const handleFilterByRegion = () => {};
-
+  
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value);
+    setNameFilter(e.target.value);
   };
 
   return (
@@ -22,39 +20,40 @@ export default function Search() {
             onChange={handleFilterByType}
             style={{fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif", fontSize: "16px"}}
           >
-            <option value="normal">normal</option>
-            <option value="fighting">fighting</option>
-            <option value="flying">flying</option>
-            <option value="poison">poison</option>
-            <option value="ground">ground</option>
-            <option value="rock">rock</option>
-            <option value="bug">bug</option>
-            <option value="ghost">ghost</option>
-            <option value="steel">steel</option>
-            <option value="fire">fire</option>
-            <option value="water">water</option>
-            <option value="grass">grass</option>
-            <option value="electric">electric</option>
-            <option value="psychic">psychic</option>
-            <option value="ice">ice</option>
-            <option value="dragon">dragon</option>
-            <option value="dark">dark</option>
-            <option value="fairy">fairy</option>
+            <option value="All types">All Types</option>
+            <option value="normal">Normal</option>
+            <option value="fighting">Fighting</option>
+            <option value="flying">Flying</option>
+            <option value="poison">Poison</option>
+            <option value="ground">Ground</option>
+            <option value="rock">Rock</option>
+            <option value="bug">Bug</option>
+            <option value="ghost">Ghost</option>
+            <option value="steel">Steel</option>
+            <option value="fire">Fire</option>
+            <option value="water">Water</option>
+            <option value="grass">Grass</option>
+            <option value="electric">Electric</option>
+            <option value="psychic">Psychic</option>
+            <option value="ice">Ice</option>
+            <option value="dragon">Dragon</option>
+            <option value="dark">Dark</option>
+            <option value="fairy">Fairy</option>
           </select>
         </div>
 
-        <div className="filter__items">
+        {/* <div className="filter__items">
           <div>Region</div>
           <select
             value="{this.props.valueregion}"
             onChange={handleFilterByRegion}
           ></select>
-        </div>
+        </div> */}
 
         {/* <div className="filter__items"> */}
         <div style={{ marginTop: "-15px" }}>
           <TextField
-            value={filter}
+            value={nameFilter}
             onChange={handleSearchChange}
             className="searchInput"
             label="Search"
@@ -64,7 +63,7 @@ export default function Search() {
         </div>
       </div>
 
-      <PokemonGrid filter={filter} />
+      <PokemonGrid nameFilter={nameFilter} />
     </>
   );
 }
