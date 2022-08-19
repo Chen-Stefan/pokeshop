@@ -12,14 +12,11 @@ export default function Navbar() {
   return (
     <div className="top-header">
       <div className="logo">
-        <Link to="/">
           <img src={pokeball} />
-        </Link>
       </div>
 
       <div className="menu">
-        <Link to="/">Home</Link>
-        {userCtx && <Link to="/store">Store</Link>}
+        {userCtx ? <Link to="/store">Store</Link> : <Link to="/">Home</Link>}
         <Button
           onClick={openCart}
           style={{ width: "3.2rem", height: "3.2rem", position: "relative" }}

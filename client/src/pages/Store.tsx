@@ -4,7 +4,7 @@ import React, { ChangeEvent, useState } from "react";
 import PokemonGrid from "../components/PokemonGrid";
 
 export default function Search() {
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   const handleFilterByType = () => {};
 
   const handleFilterByRegion = () => {};
@@ -19,9 +19,28 @@ export default function Search() {
         <div className="filter__items">
           <div>Type</div>
           <select
-            value="{this.props.valuetype}"
             onChange={handleFilterByType}
-          ></select>
+            style={{fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif", fontSize: "16px"}}
+          >
+            <option value="normal">normal</option>
+            <option value="fighting">fighting</option>
+            <option value="flying">flying</option>
+            <option value="poison">poison</option>
+            <option value="ground">ground</option>
+            <option value="rock">rock</option>
+            <option value="bug">bug</option>
+            <option value="ghost">ghost</option>
+            <option value="steel">steel</option>
+            <option value="fire">fire</option>
+            <option value="water">water</option>
+            <option value="grass">grass</option>
+            <option value="electric">electric</option>
+            <option value="psychic">psychic</option>
+            <option value="ice">ice</option>
+            <option value="dragon">dragon</option>
+            <option value="dark">dark</option>
+            <option value="fairy">fairy</option>
+          </select>
         </div>
 
         <div className="filter__items">
@@ -35,7 +54,7 @@ export default function Search() {
         {/* <div className="filter__items"> */}
         <div style={{ marginTop: "-15px" }}>
           <TextField
-            value = {filter}
+            value={filter}
             onChange={handleSearchChange}
             className="searchInput"
             label="Search"
@@ -45,7 +64,7 @@ export default function Search() {
         </div>
       </div>
 
-      <PokemonGrid filter={filter}/>
+      <PokemonGrid filter={filter} />
     </>
   );
 }
