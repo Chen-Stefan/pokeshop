@@ -1,6 +1,6 @@
 import { AppBar, TextField, Toolbar } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import PokemonGrid from "../components/PokemonGrid";
 
 export default function Search() {

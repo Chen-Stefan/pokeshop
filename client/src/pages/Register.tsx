@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Register() {
@@ -83,7 +83,7 @@ export default function Register() {
         <label htmlFor="password">Password</label>
       </div>
 
-      <button onClick={handleRegister} className="btn btn-primary">
+      <button onSubmit={handleRegister} className="btn btn-primary">
         Register
       </button>
       <Link to="/">

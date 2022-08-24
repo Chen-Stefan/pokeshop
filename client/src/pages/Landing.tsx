@@ -26,6 +26,3 @@ export default function landing() {
   );
 }
 
-{
-  /* <b style= {{ fontSize: "x-large", color: "royalblue" }}></b> */
-}
