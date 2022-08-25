@@ -33,6 +33,7 @@
     "@types/express-session": "^1.17.5",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/mongoose": "^5.11.97",
+    "@types/nodemailer": "^6.4.5",
     "@types/passport": "^1.0.9",
     "@types/passport-local": "^1.0.34",
     "nodemon": "^2.0.19",

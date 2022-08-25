@@ -1,12 +1,23 @@
 import * as dotenv from "dotenv";
-import mongoose from "mongoose";
+import mongoose, { Document, Schema, model } from "mongoose";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 dotenv.config();
 
-const userSchema = new mongoose.Schema(
+interface IUser extends Document {
+  username: string;
+  email: string;
+  password: string;
+  resetPasswordToken: any;
+  resetPasswordExpire: any;
+  matchPasswords(password: string): boolean;
+  getSignedToken(): string;
+  getResetPasswordToken(): string;
+}
+
+const userSchema = new mongoose.Schema<IUser>(
   {
     username: {
       type: String,
@@ -67,6 +78,8 @@ userSchema.methods.getResetPasswordToken = function () {
 
   return resetToken;
 };
+
 // User is name of collection, user is what the collection is defined as
-const User = mongoose.model("User", userSchema);
-export default User
+const User = mongoose.model<IUser>("User", userSchema);
+
+export { User, IUser };

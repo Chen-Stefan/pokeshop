@@ -1,12 +1,11 @@
-import User from "../src/models/User";
-import ErrorResponse from "../utilities/errorResponse.js";
-import sendEmail from "../utilities/sendEmail.js";
+import { IUser, User } from "../src/models/User"
+import ErrorResponse from "../utilities/errorResponse";
+import sendEmail from "../utilities/sendEmail";
 import crypto from "crypto";
 import { Request, Response, NextFunction } from 'express';
 
-// We use next for error handling
 export const register = async (req: Request, res: Response, next: NextFunction) => {
-  const { username, email, password } = req?.body;
+  const { username, email, password } = req.body;
 
   try {
     const user = await User.create({
@@ -21,7 +20,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
   }
 };
 
-// next 把里面的东西传到下一个middleware, 在server.js里，就是errorHandler
+// next 把里面的东西传到下一个middleware, 在index.ts里，就是errorHandler
 export const login = async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
   // 下面这行其实是没有用的，因为前端表格里自带着一点validation, 如果不输入的话没法提交表格
@@ -39,7 +38,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     const isMatch = await user.matchPasswords(password);
 
     if (!isMatch) {
-      return next(new ErrorResponse("Please enter the correct password", 401));
+      return next(new ErrorResponse("Password is incorrect, please try again", 401));
     }
 
     sendToken(user, 200, res);
@@ -48,15 +47,15 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
-export const forgotpassword = async (req, res, next) => {
+export const forgotpassword = async (req: Request, res: Response, next: NextFunction) => {
   const { email } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user: IUser | null = await User.findOne({ email });
 
     if (!user) {
       return next(
-        new ErrorResponse("Email could not be sent as it does not exist", 404)
+        new ErrorResponse("The email address provided does not exist, a password reset email could not be sent", 404)
       );
     }
 
@@ -94,7 +93,7 @@ export const forgotpassword = async (req, res, next) => {
   }
 };
 
-export const resetpassword = async (req, res, next) => {
+export const resetpassword = async (req: Request, res: Response, next: NextFunction) => {
   const resetPasswordToken = crypto
     .createHash("sha256")
     .update(req.params.resetToken)
@@ -118,14 +117,14 @@ export const resetpassword = async (req, res, next) => {
       await user.save()
       res.status(201).json({
         success: true, 
-        data: "Password reset success"
+        data: "Password reset successful"
       })
     } catch (error) {
       next(error)
     }
 };
-
-const sendToken = (user, statusCode, res) => {
+// 有问题就把前两个改成any
+const sendToken = (user: IUser, statusCode: number, res: Response) => {
   const token = user.getSignedToken();
   res.status(statusCode).json({ success: true, token });
 };
