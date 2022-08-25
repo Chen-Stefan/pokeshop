@@ -8,7 +8,7 @@ import passportLocal from 'passport-local';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import bcrypt from 'bcryptjs';
-import User from './models/User'
+import { User } from './models/User'
 import userRouter from './routes/user';
 import paymentRoute from './routes/payment'
 

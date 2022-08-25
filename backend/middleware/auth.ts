@@ -1,10 +1,18 @@
+import * as dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
-import ErrorResponse from "../utilities/errorResponse.js";
+import { IUser, User } from "../src/models/User";
+import ErrorResponse from '../utilities/errorResponse'
+import { Request, Response, NextFunction } from 'express';
 
-export const protect = async (req, res, next) => {
-  let token;
+dotenv.config();
 
+interface JwtPayload {
+  id: string
+}
+
+export const protect = async (req: any , res: Response, next: NextFunction) => {
+  let token: string | undefined;
+  
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -18,7 +26,7 @@ export const protect = async (req, res, next) => {
   }
   // Decode JWT
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`) as JwtPayload
 
     const user = await User.findById(decoded.id);
 

@@ -1,7 +1,7 @@
 import express from 'express'
 const authRoute = express.Router();
 
-import { register, login, forgotpassword, resetpassword } from '../controllers/auth.js'
+import { register, login, forgotpassword, resetpassword } from '../../controllers/auth'
 
 // 这个syntax和 router.post('/register', (req, res) => ) 是等价的
 authRoute.route('/register').post(register)

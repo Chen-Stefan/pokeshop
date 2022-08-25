@@ -11,6 +11,7 @@
       "allowJs": true,
       "jsx": "react",
       "moduleResolution": "node",
+      "useUnknownInCatchVariables": false,
       "rootDir": "src",
       "noImplicitReturns": true,
       "noImplicitThis": true,
