@@ -1,4 +1,4 @@
-import { IUser, User } from "../src/models/User"
+import { IUser, User } from "../models/User"
 import ErrorResponse from "../utilities/errorResponse";
 import sendEmail from "../utilities/sendEmail";
 import crypto from "crypto";

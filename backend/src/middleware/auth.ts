@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-import { IUser, User } from "../src/models/User";
+import { User } from "../models/User";
 import ErrorResponse from '../utilities/errorResponse'
 import { Request, Response, NextFunction } from 'express';
 
@@ -10,7 +10,7 @@ interface JwtPayload {
   id: string
 }
 
-export const protect = async (req: any , res: Response, next: NextFunction) => {
+export const protect = async (req: Request | any , res: Response, next: NextFunction) => {
   let token: string | undefined;
   
   if (
