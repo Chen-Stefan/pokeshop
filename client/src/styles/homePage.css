@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'barcadebrawl';
+  src: url('../assets/fonts/BarcadeBrawl.ttf');
+}
+
+.title {
+  font-family: 'barcadebrawl';
+  font-size: medium;
+  text-align: center;
+}

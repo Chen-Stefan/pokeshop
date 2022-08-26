@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import pokeball from "../assets/images/pokeball.webp";
+import pokeball from "../assets/images/pokeball.png";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { UserContext } from "../context/UserInfoContext";
 

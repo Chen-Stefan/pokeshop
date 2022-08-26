@@ -4,9 +4,23 @@
 @import 'stripe.css';
 @import "register.css";
 @import 'login.css';
+@import 'homePage.css';
 
 * {
 	margin: 0px 3px;
+	box-sizing: border-box;
+}
+
+html {
+	--bggradient: url("../../src/assets/images/background.png");
+  --bgcolor: none;
+}
+
+body {
+
+	background-image: var(--bggradient);
+  background-color: var(--bgcolor);
+  background-repeat: repeat;
 }
 
 .top-header{
@@ -18,12 +32,12 @@
 .logo{
 	float: left;          
 	margin: none;
-	height: 60px;
-	width: 60px;
+	height: 100px;
+	width: 100px;
 }
 
 .logo img{
-	width: 60%;
+	width: 100%;
 	float: left;
 	padding: 5px 0px;
 }
