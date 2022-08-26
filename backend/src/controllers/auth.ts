@@ -15,6 +15,11 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     });
 
     sendToken(user, 201, res);
+
+    // res.status(201).json({
+    //   success: true, 
+    //   data: "Registration success, please log in"
+    // })
   } catch (error) {
     next(error);
   }

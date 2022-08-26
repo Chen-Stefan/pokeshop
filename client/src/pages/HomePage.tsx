@@ -39,18 +39,15 @@ export default function HomePage() {
         wolrdwide.
       </div>
       <Container>
-        <div className="row mt-3">
+       
           <div className="col">
             <div
-              className="jumbotron jumbotron-fluid mt-3"
+              className="jumbotron jumbotron-fluid mt-3 float-end"
               style={{ minWidth: "18rem", marginBottom: "0" }}
             >
-              <div className="container">
-                <h1 className="my-2 mx-4">Pokeshop</h1>
-                <p className="lead mx-4 mt-4">
-                  Gather your favorite Pokemon cards
-                </p>
-              </div>
+              
+                <h2>Pokeshop</h2>
+      
             </div>
           </div>
 
@@ -94,7 +91,6 @@ export default function HomePage() {
               {/* <span id="error-message"></span> */}
             </div>
           </div>
-        </div>
         <div className="d-flex justify-content-center m-3">
       <img src={pikachu} style={{width: '400px', height: '280px'}}/>
       </div>

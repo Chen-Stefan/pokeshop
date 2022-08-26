@@ -1,96 +1,138 @@
 import axios from "axios";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { FormEvent, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [successMsg, setSuccessMsg] = useState<string>("");
-  const [errorMsg, setErrorMsg] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const navigate = useNavigate();
 
-  const handleRegister = (e: { preventDefault: () => void; }) => {
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
-    setErrorMsg('');
-    
-    try {
-      axios
-      .post(
-        "http://localhost:5000/register",
-        {
-          username,
-          email,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then(res => setSuccessMsg(res.data))
-    } catch (error: any) {
-      setErrorMsg(error.response.data.message);
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    if (password !== confirmPassword) {
+      setPassword("");
+      setConfirmPassword("");
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Passwords do not match");
     }
 
-};
-      
- 
-  // (res) => {
-  //   if (res.data === "User already exists") {
-  //     setErrorMsg("User already exists, please try again");
-  //   } else {
-  //     setSuccessMsg("Registration successful, please log in");
-  //   }
-  // };
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        { username, email, password },
+        config
+      );
+      // when we register, we will get a token, store it in localStorage
+      localStorage.setItem("authToken", data.token);
+      setSuccess("Registration success, please log in")
+      // navigate("/");
+    } catch (error) {
+      setError(error.response.data.error);
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    }
+  };
 
   return (
-    <div className="jumbotron">
-      <h1>Register</h1>
-      <span style={{color: 'green'}}>{successMsg}</span>
-      <span style={{color: 'red'}}>{errorMsg}</span>
-      <div className="form-floating mb-3">
-        <input
-          type="text"
-          onChange={(e) => setUsername(e.target.value)}
-          className="form-control"
-          id="username"
-          placeholder="username"
-          required
-        />
-        <label htmlFor="username">Username</label>
-      </div>
+    <div className="register-screen">
+      <form onSubmit={handleRegister} className="register-screen__form">
+        <h3 className="m-2">Register</h3>
+        {success && (
+          <span className="alert alert-success p-2 d-flex" role="alert">
+          {success}
+        </span>
+        )}
+        {error && (
+          <span className="alert alert-danger p-2 d-flex" role="alert">
+            {error}
+          </span>
+        )}
+        <div className="form-group m-1">
+          <label htmlFor="username" className="small">
+            Username:
+          </label>
+          <input
+            type="text"
+            onChange={(e) => setUsername(e.target.value)}
+            className="form-control"
+            id="username"
+            placeholder="Enter username"
+            value={username}
+            required
+          />
+        </div>
 
-      <div className="form-floating mb-3">
-        <input
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-          className="form-control"
-          id="email"
-          placeholder="name@example.com"
-          required
-        />
-        <label htmlFor="email">Email</label>
-      </div>
+        <div className="form-group m-1">
+          <label htmlFor="email" className="small">
+            Email:
+          </label>
+          <input
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            className="form-control"
+            id="email"
+            placeholder="Enter email address"
+            value={email}
+            required
+          />
+        </div>
 
-      <div className="form-floating mb-3">
-        <input
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          className="form-control"
-          id="password"
-          placeholder="password"
-          required
-        />
-        <label htmlFor="password">Password</label>
-      </div>
+        <div className="form-group m-1">
+          <label htmlFor="password" className="small">
+            Password:
+          </label>
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="form-control"
+            id="password"
+            placeholder="Enter password"
+            value={password}
+            required
+          />
+        </div>
 
-      <button onSubmit={handleRegister} className="btn btn-primary">
-        Register
-      </button>
-      <Link to="/">
-        <button type="button" className="btn btn-outline-secondary">
-          Login
+        <div className="form-group m-1">
+          <label htmlFor="confirmpassword" className="small">
+            Confirm Password:
+          </label>
+          <input
+            type="password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="form-control"
+            required
+            id="confirmpassword"
+            placeholder="Confirm password"
+            value={confirmPassword}
+          />
+        </div>
+        <button type="submit" className="btn btn-warning w-100 mt-2">
+          Register
         </button>
-      </Link>
+        <span className="register-screen__subtext">
+          Alredy have an account? <Link to="/">Login</Link>
+        </span>
+      </form>
     </div>
   );
 }

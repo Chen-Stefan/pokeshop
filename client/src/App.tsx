@@ -29,7 +29,6 @@ function App() {
             ></Route>
             <Route path="/checkout" element={<StripeContainer />}></Route>
           </Routes>
-          <Footer />
         </UserInfoProvider>
       </ShoppingCartProvider>
     </BrowserRouter>

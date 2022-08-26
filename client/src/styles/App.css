@@ -2,6 +2,7 @@
 @import 'store.css';
 @import 'pokemonCard.css';
 @import 'stripe.css';
+@import "register.css";
 
 * {
 	margin: 0px 3px;
