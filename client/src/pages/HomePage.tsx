@@ -1,33 +1,46 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import pikachu from '../assets/images/pikachu.gif'
+import { Link, useNavigate } from "react-router-dom";
+import pikachu from "../assets/images/pikachu.gif";
 
 export default function HomePage() {
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string>("")
-   
-  const login = () => {
-    axios
-      .post(
-        "http://localhost:5000/login",
-        {
-          username,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        if (res.data === "Authentication Successful") {
-          window.location.href = "/landing";
-        } else {
-          
-        }
-      });
+  const [error, setError] = useState<string>("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5000/api/user/login",
+        { email, password },
+        config
+      );
+      // when we register, we will get a token, store it in localStorage
+      localStorage.setItem("authToken", data.token);
+
+      navigate("/");
+    } catch (error) {
+      setError(error.response.data.error);
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    }
   };
 
   return (
@@ -39,64 +52,65 @@ export default function HomePage() {
         wolrdwide.
       </div>
       <Container>
-       
-          <div className="col">
-            <div
-              className="jumbotron jumbotron-fluid mt-3 float-end"
-              style={{ minWidth: "18rem", marginBottom: "0" }}
-            >
-              
-                <h2>Pokeshop</h2>
-      
-            </div>
+        <div
+          className="jumbotron jumbotron-fluid mt-3 float-end"
+          style={{ minWidth: "18rem", marginBottom: "0" }}
+        >
+          <h2>Pokeshop</h2>
+        </div>
+        <div className="login-screen">
+        <form onSubmit={handleLogin} className="login-screen__form">
+         
+          {error && <span className="error-message"> {error} </span>}
+
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              id="email"
+              placeholder="Enter email address"
+              value={email}
+              tabIndex={1}
+            />
           </div>
 
-          <div className="col">
-            <div className="jumbotron pt-3 mt-3" style={{ minWidth: "18rem" }}>
-              {/* Login Error */}
-                <div className="form-floating my-3">
-                  <input
-                    type="text"
-                    onChange={(e) => setUsername(e.target.value)}
-                    className="form-control"
-                    id="username"
-                    placeholder="username"
-                    required
-                  />
-                  <label htmlFor="username">Username</label>
-                </div>
-                <div className="form-floating mb-3">
-                  <input
-                    type="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="form-control"
-                    id="password"
-                    placeholder="password"
-                    required
-                  />
-                  <label htmlFor="password">Password</label>
-                </div>
-                <button
-                  onClick={login}
-                  style={{ backgroundColor: "#350661" }}
-                  className="btn btn-primary"
-                >
-                  Login
-                </button>
-                <Link to="/register">
-                  <button type="button" className="btn btn-outline-primary">
-                    Register
-                  </button>
-                </Link>
-              {/* <span id="error-message"></span> */}
-            </div>
+          <div className="form-group">
+            <label htmlFor="password">
+              Password:&nbsp;
+              <Link
+                to="/forgotpassword"
+                className="login-screen__forgotpassword"
+                tabIndex={4}
+              >
+                Forgot Password?
+              </Link>
+            </label>
+            <input
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              id="password"
+              placeholder="Enter password"
+              value={password}
+              tabIndex={2}
+            />
           </div>
+
+          <button type="submit" className="btn btn-outline-warning" tabIndex={3}>
+            Login
+          </button>
+
+          <span className="login-screen__subtext">
+            Do not have an account? <Link to="/register">Sign up</Link>
+          </span>
+        </form>
+        </div>
         <div className="d-flex justify-content-center m-3">
-      <img src={pikachu} style={{width: '400px', height: '280px'}}/>
-      </div>
+          <img src={pikachu} style={{ width: "400px", height: "280px" }} />
+        </div>
       </Container>
-     
-
     </>
   );
 }

@@ -16,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <ShoppingCartProvider>
-        <UserInfoProvider>
+        {/* <UserInfoProvider> */}
           <Navbar />
           <Routes>
             <Route path="/" element={<Homepage />}></Route>
@@ -29,7 +29,7 @@ function App() {
             ></Route>
             <Route path="/checkout" element={<StripeContainer />}></Route>
           </Routes>
-        </UserInfoProvider>
+        {/* </UserInfoProvider> */}
       </ShoppingCartProvider>
     </BrowserRouter>
   );

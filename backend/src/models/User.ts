@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema<IUser>(
     username: {
       type: String,
       required: [true, "Username cannot be empty"],
+      unique: true
     },
     email: {
       type: String,

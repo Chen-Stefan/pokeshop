@@ -1,6 +1,6 @@
 import axios from "axios";
-import { FormEvent, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [username, setUsername] = useState<string>("");
@@ -9,13 +9,6 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      navigate("/");
-    }
-  }, [navigate]);
 
   const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
@@ -43,8 +36,8 @@ export default function Register() {
       );
       // when we register, we will get a token, store it in localStorage
       localStorage.setItem("authToken", data.token);
-      setSuccess("Registration success, please log in")
-      // navigate("/");
+
+      return setSuccess("Registration success, please log in");
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {
@@ -59,8 +52,8 @@ export default function Register() {
         <h3 className="m-2">Register</h3>
         {success && (
           <span className="alert alert-success p-2 d-flex" role="alert">
-          {success}
-        </span>
+            {success}
+          </span>
         )}
         {error && (
           <span className="alert alert-danger p-2 d-flex" role="alert">

@@ -1,13 +1,27 @@
-import { IUser, User } from "../models/User"
+import { IUser, User } from "../models/User";
 import ErrorResponse from "../utilities/errorResponse";
 import sendEmail from "../utilities/sendEmail";
 import crypto from "crypto";
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from "express";
 
-export const register = async (req: Request, res: Response, next: NextFunction) => {
+export const register = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { username, email, password } = req.body;
 
   try {
+    const userExists = await User.findOne({ $or: [{ username }, { email }] });
+
+    if (userExists) {
+      return next(
+        new ErrorResponse(
+          "User already exists, please try a different username or email",
+          400
+        )
+      );
+    }
     const user = await User.create({
       username,
       email,
@@ -15,18 +29,17 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     });
 
     sendToken(user, 201, res);
-
-    // res.status(201).json({
-    //   success: true, 
-    //   data: "Registration success, please log in"
-    // })
   } catch (error) {
     next(error);
   }
 };
 
 // next 把里面的东西传到下一个middleware, 在index.ts里，就是errorHandler
-export const login = async (req: Request, res: Response, next: NextFunction) => {
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { email, password } = req.body;
   // 下面这行其实是没有用的，因为前端表格里自带着一点validation, 如果不输入的话没法提交表格
   if (!email || !password) {
@@ -37,13 +50,17 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     const user = await User.findOne({ email }).select("+password");
     // 如果用户邮箱不存在，提示错误信息
     if (!user) {
-      return next(new ErrorResponse("Invalid email address, please sign up first", 401));
+      return next(
+        new ErrorResponse("Invalid email address, please sign up first", 401)
+      );
     }
 
     const isMatch = await user.matchPasswords(password);
 
     if (!isMatch) {
-      return next(new ErrorResponse("Password is incorrect, please try again", 401));
+      return next(
+        new ErrorResponse("Password is incorrect, please try again", 401)
+      );
     }
 
     sendToken(user, 200, res);
@@ -52,7 +69,11 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
-export const forgotpassword = async (req: Request, res: Response, next: NextFunction) => {
+export const forgotpassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { email } = req.body;
 
   try {
@@ -60,7 +81,10 @@ export const forgotpassword = async (req: Request, res: Response, next: NextFunc
 
     if (!user) {
       return next(
-        new ErrorResponse("The email address provided does not exist, a password reset email could not be sent", 404)
+        new ErrorResponse(
+          "The email address provided does not exist, a password reset email could not be sent",
+          404
+        )
       );
     }
 
@@ -98,35 +122,39 @@ export const forgotpassword = async (req: Request, res: Response, next: NextFunc
   }
 };
 
-export const resetpassword = async (req: Request, res: Response, next: NextFunction) => {
+export const resetpassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const resetPasswordToken = crypto
     .createHash("sha256")
     .update(req.params.resetToken)
     .digest("hex");
-  
-    try {
-      const user = await User.findOne({
-        resetPasswordToken,
-        // Check the expiry date is greater than now (still valid) using mongodb query
-        resetPasswordExpire: { $gt: Date.now()}
-      })
 
-      if (!user) {
-        return next(new ErrorResponse("Invalid Reset Token", 400))
-      }
+  try {
+    const user = await User.findOne({
+      resetPasswordToken,
+      // Check the expiry date is greater than now (still valid) using mongodb query
+      resetPasswordExpire: { $gt: Date.now() },
+    });
 
-      user.password = req.body.password
-      user.resetPasswordToken = undefined
-      user.resetPasswordExpire = undefined
-      
-      await user.save()
-      res.status(201).json({
-        success: true, 
-        data: "Password reset successful"
-      })
-    } catch (error) {
-      next(error)
+    if (!user) {
+      return next(new ErrorResponse("Invalid Reset Token", 400));
     }
+
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+    res.status(201).json({
+      success: true,
+      data: "Password reset successful",
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 // 有问题就把前两个改成any
 const sendToken = (user: IUser, statusCode: number, res: Response) => {

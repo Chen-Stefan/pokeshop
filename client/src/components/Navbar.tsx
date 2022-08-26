@@ -6,7 +6,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 import { UserContext } from "../context/UserInfoContext";
 
 export default function Navbar() {
-  const userCtx = useContext(UserContext);
+  // const userCtx = useContext(UserContext);
   const { openCart, cartQuantity } = useShoppingCart();
 
   return (
@@ -16,7 +16,8 @@ export default function Navbar() {
       </div>
 
       <div className="menu">
-        {userCtx ? <Link to="/store">Store</Link> : <Link to="/">Home</Link>}
+        {/* {userCtx ? <Link to="/store">Store</Link> : <Link to="/">Home</Link>} */}
+        <Link to="/">Home</Link>
         <Button
           onClick={openCart}
           style={{ width: "3.2rem", height: "3.2rem", position: "relative" }}
