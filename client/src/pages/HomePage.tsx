@@ -51,7 +51,7 @@ export default function HomePage() {
       </div>
 
       <div>
-        <h2 className="title mt-4 fs-5">Pokeshop</h2>
+        <h2 className="title m-4 fs-5">Pokeshop</h2>
 
         <div className="login-screen">
           <form onSubmit={handleLogin} className="login-screen__form">

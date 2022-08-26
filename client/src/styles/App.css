@@ -48,7 +48,6 @@ body {
 	margin-left: 100px
 }
 	
-
 .menu a {
 	padding: 0em 1.5em;
 	text-decoration: none;
@@ -57,13 +56,24 @@ body {
 	line-height: 60px;
 	color: #0074D9;
 	float: left;
-
 }
-	
-	
+
 .menu a:hover {
 	background: #0074D9;
 	color: white;
 	border-left: 1px solid whitesmoke;
-	
+}
+
+.btn-logout {
+	padding: 0em 1.5em;
+	border: none;
+  background-color: inherit;
+	font-weight: 600;
+	line-height: 60px;
+	color: #0074D9;
+	float: left;
+}
+
+.btn-logout:hover {
+	text-decoration: underline;
 }

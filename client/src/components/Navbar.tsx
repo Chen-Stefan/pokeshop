@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import pokeball from "../assets/images/pokeball.png";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { UserContext } from "../context/UserInfoContext";
@@ -8,7 +8,12 @@ import { UserContext } from "../context/UserInfoContext";
 export default function Navbar() {
   // const userCtx = useContext(UserContext);
   const { openCart, cartQuantity } = useShoppingCart();
+  const navigate = useNavigate();
 
+  const logoutHandler = () => {
+    localStorage.removeItem("authToken")
+    navigate('/')
+  }
   return (
     <div className="top-header">
       <div className="logo">
@@ -17,7 +22,8 @@ export default function Navbar() {
 
       <div className="menu">
         {/* {userCtx ? <Link to="/store">Store</Link> : <Link to="/">Home</Link>} */}
-        <Link to="/">Home</Link>
+        {localStorage.getItem("authToken") && <button onClick={logoutHandler} className="btn-logout">Sign out </button>}
+        <Link to="/store">Store</Link>
         <Button
           onClick={openCart}
           style={{ width: "3.2rem", height: "3.2rem", position: "relative" }}

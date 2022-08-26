@@ -1,9 +1,9 @@
-import { AppBar, TextField, Toolbar } from "@mui/material";
+import { TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { ChangeEvent, useState } from "react";
 import PokemonGrid from "../components/PokemonGrid";
 
-export default function Search() {
+export default function Store() {
   const options = [
     { value: "", text: "--Choose a Type--" },
     { value: "normal", text: "Normal" },
@@ -56,15 +56,6 @@ export default function Search() {
           </select>
         </div>
 
-        {/* <div className="filter__items">
-          <div>Region</div>
-          <select
-            value="{this.props.valueregion}"
-            onChange={handleFilterByRegion}
-          ></select>
-        </div> */}
-
-        {/* <div className="filter__items"> */}
         <div style={{ marginTop: "-15px" }}>
           <TextField
             value={nameFilter}
