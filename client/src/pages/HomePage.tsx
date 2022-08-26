@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useState, useEffect, FormEvent } from "react";
-import { Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import pikachu from "../assets/images/pikachu.gif";
 
 export default function HomePage() {
   const [email, setEmail] = useState<string>("");
@@ -34,7 +32,7 @@ export default function HomePage() {
       // when we register, we will get a token, store it in localStorage
       localStorage.setItem("authToken", data.token);
 
-      navigate("/");
+      navigate("/store");
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {
@@ -47,8 +45,8 @@ export default function HomePage() {
     <>
       <div className="mt-3 text-center fs-5">
         Welcome to My Pokemon shop! This is an online shopping site where you
-        can search, view and purchase the Pokemon cards you like. The Pokemon
-        data come from the open source RESTful API created by pokemon lovers
+        can search, view and purchase the Pokemons you like. The Pokemon
+        data come from the open source PokeAPI created by pokemon lovers
         wolrdwide.
       </div>
 
@@ -57,9 +55,9 @@ export default function HomePage() {
 
         <div className="login-screen">
           <form onSubmit={handleLogin} className="login-screen__form">
-            {error && <span className="error-message"> {error} </span>}
+            {error && <span className="alert alert-danger p-2" role="alert"> {error} </span>}
 
-            <div className="form-group">
+            <div className="form-group mt-2">
               <label htmlFor="email">Email:</label>
               <input
                 type="email"

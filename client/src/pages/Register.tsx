@@ -25,7 +25,7 @@ export default function Register() {
       setTimeout(() => {
         setError("");
       }, 5000);
-      return setError("Passwords do not match");
+      return setError("Passwords entered do not match");
     }
 
     try {
