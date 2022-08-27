@@ -16,7 +16,7 @@ export default function StripeContainer() {
     <Elements stripe={stripeTestPromise} >
       <PaymentForm amount={amount}/>
       <div className="d-flex justify-content-center m-3">
-      <img src={pikachu} className='' style={{width: '350px', height: '280px'}}/>
+      <img src={pikachu} style={{width: '350px', height: '280px'}}/>
       </div>
     </Elements>
   )

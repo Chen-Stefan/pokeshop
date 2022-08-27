@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import pikachuRunning from '../assets/images/pikachuRunning.gif'
 
 export default function HomePage() {
   const [email, setEmail] = useState<string>("");
@@ -43,11 +44,11 @@ export default function HomePage() {
 
   return (
     <>
-      <div className="mt-3 text-center fs-5">
-        Welcome to My Pokemon shop! This is an online shopping site where you
-        can search, view and purchase the Pokemons you like. The Pokemon
-        data come from the open source PokeAPI created by pokemon lovers
-        wolrdwide.
+      <div className="mt-3 mx-auto fs-5" style={{width: "60%"}}>
+        <span>Welcome to Stefan's Pokemon shop! This is an online shopping site where you
+        can explore and purchase your favorite pokemon cards. The Pokemon
+        data come from the open source PokeAPI contributed by pokemon lovers
+        wolrdwide. <img src={pikachuRunning} alt="" style={{width: '80px', height: '64px'}}/></span>
       </div>
 
       <div>
