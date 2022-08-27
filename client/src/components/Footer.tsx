@@ -1,16 +1,15 @@
-import React from "react";
-import twitter from "../assets/images/twitter.png";
-import facebook from "../assets/images/facebook.png";
-import instagram from "../assets/images/instagram.png";
+import linkedIn from "../assets/images/linkedin.png";
+import github from "../assets/images/github.png";
+import gmail from "../assets/images/gmail.png";
 
 export default function Footer() {
   return (
-    <div style = {{ bottom: 0, width: '100%', textAlign: 'center'}}>
+    <div className="text-center mt-auto">
       <h6>Copyright &copy; Stefan's Pokemon Shop 2022</h6>
       <div>
-        <img src={twitter} alt="twitter" width="50px" height="50px" />
-        <img src={facebook} alt="facebook" width="50px" height="50px" />
-        <img src={instagram} alt="instagram" width="50px" height="50px" />
+        <a href="https://www.linkedin.com/in/stefan-chen/" target="_blank"><img src={linkedIn} alt="twitter" width="50px" height="50px" /></a>
+        <a href="https://github.com/Chen-Stefan" target="_blank"><img src={github} alt="facebook" width="50px" height="50px" /></a>
+        <a href="mailto:stefanchen9@gmail.com" target="_blank"><img src={gmail} alt="instagram" width="60px"/></a>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState, useEffect, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import pikachuRunning from '../assets/images/pikachuRunning.gif'
-import fireworks from '../assets/images/fireworks.png'
+import pikachuRunning from "../assets/images/pikachuRunning.gif";
+import fireworks from "../assets/images/fireworks.png";
+import Footer from "../components/Footer";
 
 export default function HomePage() {
   const [email, setEmail] = useState<string>("");
@@ -44,12 +45,19 @@ export default function HomePage() {
   };
 
   return (
-    <>
-      <div className="mt-3 mx-auto fs-5" style={{width: "60%"}}>
-        <span>Welcome to Stefan's Pokemon shop <img src={fireworks} alt="" /> This is an online shopping site where you
-        can explore and purchase your favorite pokemon cards. The Pokemon
-        data come from the open source PokeAPI contributed by pokemon lovers
-        wolrdwide. <img src={pikachuRunning} alt="" style={{width: '80px', height: '64px'}}/></span>
+    <div>
+      <div className="mt-3 mx-auto fs-5" style={{ width: "70%" }}>
+        <span>
+          Welcome to my Pokémon shop <img src={fireworks} alt="fireworkIcon" />
+          This is an online shopping site where you can explore and purchase
+          your favorite pokemon cards. The Pokémon data are gathered from
+          pokeapi.co, an open source RESTful API.
+          <img
+            src={pikachuRunning}
+            alt="pikachuRunningGif"
+            style={{ width: "60px", height: "48px", verticalAlign: "middle" }}
+          />
+        </span>
       </div>
 
       <div>
@@ -57,7 +65,12 @@ export default function HomePage() {
 
         <div className="login-screen">
           <form onSubmit={handleLogin} className="login-screen__form">
-            {error && <span className="alert alert-danger p-2" role="alert"> {error} </span>}
+            {error && (
+              <span className="alert alert-danger p-2" role="alert">
+                {" "}
+                {error}{" "}
+              </span>
+            )}
 
             <div className="form-group mt-2">
               <label htmlFor="email">Email:</label>
@@ -108,7 +121,7 @@ export default function HomePage() {
           </form>
         </div>
       </div>
-      
-    </>
+      <Footer />
+    </div>
   );
 }
