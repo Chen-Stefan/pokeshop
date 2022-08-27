@@ -40,9 +40,11 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
             Total CAD {formatCurrency(totalPrice)}
           </div>
         </Stack>
-        <button onClick={handleNavigateToCheckout} className="checkout">
-          Checkout
-        </button>
+        {totalPrice !== 0 && (
+          <button onClick={handleNavigateToCheckout} className="checkout">
+            Checkout
+          </button>
+        )}
       </Offcanvas.Body>
     </Offcanvas>
   );
