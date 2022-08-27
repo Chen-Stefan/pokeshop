@@ -11,12 +11,6 @@ export default function HomePage() {
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      navigate("/");
-    }
-  }, [navigate]);
-
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -32,12 +26,12 @@ export default function HomePage() {
         { email, password },
         config
       );
-      // when we register, we will get a token, store it in localStorage
+      // when login successful, we will get a token, store it in localStorage
       localStorage.setItem("authToken", data.token);
 
       navigate("/store");
     } catch (error) {
-      setError(error.response.data.error);
+      setError(error.response.data.errorMessage);
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -65,13 +59,14 @@ export default function HomePage() {
 
         <div className="login-screen">
           <form onSubmit={handleLogin} className="login-screen__form">
+            <div className="text-center">
             {error && (
               <span className="alert alert-danger p-2" role="alert">
                 {" "}
                 {error}{" "}
               </span>
             )}
-
+            </div>
             <div className="form-group mt-2">
               <label htmlFor="email">Email:</label>
               <input
