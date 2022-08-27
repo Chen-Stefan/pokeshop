@@ -4,6 +4,7 @@ import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
 import storeItems from "../data/pokemonItems.json";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -17,6 +18,14 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   }, 0);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (totalPrice == 0) {
+      closeCart()
+      navigate("/store");
+    }
+  }, [totalPrice]);
+  
   const handleNavigateToCheckout = () => {
     closeCart()
     navigate("/checkout", {
