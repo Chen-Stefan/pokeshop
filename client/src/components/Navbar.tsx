@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import pokeball from "../assets/images/pokeball.webp";
+import pokeball from "../assets/images/pokeball.png";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export default function Navbar() {
@@ -23,7 +23,7 @@ export default function Navbar() {
             Log out
           </button>
         )}
-        <Link to="/store">Store</Link>
+        <Link to="/store">Shop</Link>
         <Button
           onClick={openCart}
           style={{ width: "3.2rem", height: "3.2rem", position: "relative" }}
