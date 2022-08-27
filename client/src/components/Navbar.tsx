@@ -29,7 +29,7 @@ export default function Navbar() {
           onClick={openCart}
           style={{ width: "3.2rem", height: "3.2rem", position: "relative" }}
           variant="outline-primary"
-          className="rounded-circle mt-1 float-end"
+          className="rounded-circle mt-1"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

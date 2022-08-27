@@ -25,8 +25,6 @@ body {
 .menu{
 	display: flex;
 	justify-content: space-between;
-	height: 60px;
-	
 }
 
 .logo{
@@ -43,23 +41,23 @@ body {
 
 .menu__right-column {
 	float: right;
-	height: 100%;
+	
 }
 
 .menu__right-column a {
-	padding: 1em;
+	padding: 0 1.5em;
+	margin-right: 0.5em;
+	line-height: 60px;
 	text-decoration: none;
 	font-weight: 600;
 	text-transform: uppercase;
-	height: 60px;
 	color: #0074D9;
+	float: left;
 }
 
 .menu__right-column a:hover {
 	background: #0074D9;
 	color: white;
-	border-left: 1px solid whitesmoke;
-	line-height: 60px;
 }
 
 .btn-logout {
@@ -69,6 +67,7 @@ body {
 	font-weight: 600;
 	line-height: 60px;
 	color: #0074D9;
+	float: left;
 }
 
 .btn-logout:hover {
