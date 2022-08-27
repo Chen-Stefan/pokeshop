@@ -17,7 +17,8 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   }, 0);
 
   const navigate = useNavigate();
-  const handleNavigateToCheckout = (e: any) => {
+  const handleNavigateToCheckout = () => {
+    closeCart()
     navigate("/checkout", {
       state: {
         paymentAmount: totalPrice,
