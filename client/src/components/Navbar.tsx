@@ -3,32 +3,33 @@ import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import pokeball from "../assets/images/pokeball.png";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import { UserContext } from "../context/UserInfoContext";
 
 export default function Navbar() {
-  // const userCtx = useContext(UserContext);
   const { openCart, cartQuantity } = useShoppingCart();
   const navigate = useNavigate();
 
   const logoutHandler = () => {
-    localStorage.removeItem("authToken")
-    navigate('/')
-  }
+    localStorage.removeItem("authToken");
+    navigate("/");
+  };
   return (
-    <div className="top-header">
-      <div className="logo">
-          <img src={pokeball} />
-      </div>
-
       <div className="menu">
-        {/* {userCtx ? <Link to="/store">Store</Link> : <Link to="/">Home</Link>} */}
-        {localStorage.getItem("authToken") && <button onClick={logoutHandler} className="btn-logout">Sign out </button>}
+        <div className="logo">
+          <img src={pokeball} alt="" />
+        </div>
+
+        <div className='menu__right-column'>
+          {localStorage.getItem("authToken") && (
+          <button onClick={logoutHandler} className="btn-logout">
+            Log out
+          </button>
+        )}
         <Link to="/store">Store</Link>
         <Button
           onClick={openCart}
           style={{ width: "3.2rem", height: "3.2rem", position: "relative" }}
           variant="outline-primary"
-          className="rounded-circle mt-1"
+          className="rounded-circle mt-1 float-end"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +55,9 @@ export default function Navbar() {
             </div>
           )}
         </Button>
+        
+
+        </div>
       </div>
-    </div>
   );
 }

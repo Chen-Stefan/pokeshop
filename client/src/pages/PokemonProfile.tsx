@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 const TYPE_COLORS: { [key: string]: any } = {
   bug: "#C2D020",
@@ -102,6 +103,7 @@ export default function PokemonProfile(): JSX.Element {
   }
 
   return (
+    <div className="profile__container">
     <div className="col mt-2 mb-3">
       <div className="card">
         <div className="card-header">
@@ -265,6 +267,7 @@ export default function PokemonProfile(): JSX.Element {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-@import-normalize;
+
 @import 'store.css';
 @import 'pokemonCard.css';
 @import 'stripe.css';
@@ -7,7 +7,7 @@
 @import 'homePage.css';
 
 * {
-	margin: 0px 3px;
+	margin: 1px 3px;
 	box-sizing: border-box;
 }
 
@@ -17,51 +17,49 @@ html {
 }
 
 body {
-
 	background-image: var(--bggradient);
   background-color: var(--bgcolor);
   background-repeat: repeat;
 }
 
-.top-header{
-		
-	text-align: center;
+.menu{
+	display: flex;
+	justify-content: space-between;
 	height: 60px;
+	
 }
 
 .logo{
-	float: left;          
-	margin: none;
-	height: 100px;
-	width: 100px;
+	float: left;    
+	height: 80px;
+	width: 80px;
 }
 
 .logo img{
 	width: 100%;
-	float: left;
 	padding: 5px 0px;
+	
 }
 
-.menu{
+.menu__right-column {
 	float: right;
 	height: 100%;
-	margin-left: 100px
 }
-	
-.menu a {
-	padding: 0em 1.5em;
+
+.menu__right-column a {
+	padding: 1em;
 	text-decoration: none;
 	font-weight: 600;
 	text-transform: uppercase;
-	line-height: 60px;
+	height: 60px;
 	color: #0074D9;
-	float: left;
 }
 
-.menu a:hover {
+.menu__right-column a:hover {
 	background: #0074D9;
 	color: white;
 	border-left: 1px solid whitesmoke;
+	line-height: 60px;
 }
 
 .btn-logout {
@@ -71,7 +69,6 @@ body {
 	font-weight: 600;
 	line-height: 60px;
 	color: #0074D9;
-	float: left;
 }
 
 .btn-logout:hover {

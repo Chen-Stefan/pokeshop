@@ -22,3 +22,23 @@
 	margin: 10px auto 0 auto;
 	font-size: 1em;
 }
+
+.button__qtychange {
+  background: url("../assets/images/background.png") no-repeat;
+  border-radius: 0.5rem;
+  width: 30px;
+  height: 32px;
+}
+
+@media screen and (max-width: 376px) {
+  .profile__container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+    margin: 0;
+    gap: 2vh 2vw;
+    justify-content: center;
+  }
+  
+}
