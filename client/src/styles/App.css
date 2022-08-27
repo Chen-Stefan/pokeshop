@@ -6,6 +6,11 @@
 @import 'login.css';
 @import 'homePage.css';
 
+@font-face {
+  font-family: 'barcadebrawl';
+  src: url('../assets/fonts/BarcadeBrawl.ttf');
+}
+
 * {
 	margin: 1px 3px;
 	box-sizing: border-box;
@@ -45,11 +50,14 @@ body {
 }
 
 .menu__right-column a {
-	padding: 0 1.5em;
-	margin-right: 0.5em;
+	font-family: 'barcadebrawl';
+	padding: 0 1em;
+	border-radius: 0.8rem;
+	margin-right: 1em;
 	line-height: 60px;
 	text-decoration: none;
-	font-weight: 600;
+	font-weight: 300;
+	font-size: small;
 	text-transform: uppercase;
 	color: #0074D9;
 	float: left;
@@ -72,4 +80,5 @@ body {
 
 .btn-logout:hover {
 	text-decoration: underline;
+	text-decoration-skip-ink: none;
 }
