@@ -37,7 +37,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     0
   );
 
-  const openCart = () => setIsOpen(true);
+  const openCart = () => localStorage.getItem("authToken") && setIsOpen(true);
   const closeCart = () => setIsOpen(false);
 
   function getItemQuantity(id: number) {
