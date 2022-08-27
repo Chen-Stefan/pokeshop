@@ -34,12 +34,18 @@ export default function Register() {
         { username, email, password },
         config
       );
-      // when we register, we will get a token, store it in localStorage
-      localStorage.setItem("authToken", data.token);
+      setSuccess(data.data);
 
-      return setSuccess("Registration success, please log in");
+      setTimeout(() => {
+        setSuccess("");
+      }, 10000);
     } catch (error) {
-      setError(error.response.data.error);
+      // setError(error.message) axios自带的error message: Request failed with Status Code 400
+
+      // error.response.data 是axios碰到错误返回的promise, 对应res.status.json 
+      // 就需要使用error.response.data来取得发送的object, 然后再通过key获取error message
+      setError(error.response.data.errorMessage);
+
       setTimeout(() => {
         setError("");
       }, 5000);

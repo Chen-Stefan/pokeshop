@@ -22,13 +22,16 @@ export const register = async (
         )
       );
     }
-    const user = await User.create({
+    await User.create({
       username,
       email,
       password,
     });
 
-    sendToken(user, 201, res);
+    res.status(201).json({
+      success: true, 
+      data: "Registration success, please log in"
+    })
   } catch (error) {
     next(error);
   }
@@ -82,7 +85,7 @@ export const forgotpassword = async (
     if (!user) {
       return next(
         new ErrorResponse(
-          "The email address provided does not exist, a password reset email could not be sent",
+          "Invalid email address, password reset email could not be sent",
           404
         )
       );

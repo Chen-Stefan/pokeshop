@@ -3,6 +3,8 @@ import { Request, Response, NextFunction } from 'express';
 
 // Parameter should always be error first
 const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+  // err是传过来的Promise, 先destructure把object取出来，再设置一下message
+  // 最后res.status.json 里面再把error.message 放到自定义的errorMessage key里
   let error = { ...err };
 
   error.message = err.message
@@ -22,7 +24,7 @@ const errorHandler = (err: any, req: Request, res: Response, next: NextFunction)
 
   res.status(error.statusCode || 500).json({
     success: false,
-    error: error.message || 'Server Error'
+    errorMessage: error.message || 'Server Error'
   })
 }
 
