@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import pokeball from "../assets/images/pokeball.png";
+import pokeball from "../assets/images/pokeball.webp";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export default function Navbar() {

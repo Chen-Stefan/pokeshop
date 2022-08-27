@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import pikachuRunning from '../assets/images/pikachuRunning.gif'
+import fireworks from '../assets/images/fireworks.png'
 
 export default function HomePage() {
   const [email, setEmail] = useState<string>("");
@@ -45,7 +46,7 @@ export default function HomePage() {
   return (
     <>
       <div className="mt-3 mx-auto fs-5" style={{width: "60%"}}>
-        <span>Welcome to Stefan's Pokemon shop! This is an online shopping site where you
+        <span>Welcome to Stefan's Pokemon shop <img src={fireworks} alt="" /> This is an online shopping site where you
         can explore and purchase your favorite pokemon cards. The Pokemon
         data come from the open source PokeAPI contributed by pokemon lovers
         wolrdwide. <img src={pikachuRunning} alt="" style={{width: '80px', height: '64px'}}/></span>
