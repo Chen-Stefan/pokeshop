@@ -6,8 +6,6 @@ import userRouter from './routes/user';
 import paymentRoute from './routes/payment'
 import errorHandler from './middleware/error'
 
-// const LocalStrategy = passportLocal.Strategy
-
 // .env
 dotenv.config();
 

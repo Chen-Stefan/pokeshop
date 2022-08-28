@@ -30,7 +30,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
     closeCart()
     navigate("/checkout", {
       state: {
-        paymentAmount: totalPrice,
+        paymentAmount: totalPrice
       },
     });
   };
@@ -47,7 +47,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
             <CartItem key={item.id} {...item} />
           ))}
           <div className="ms-auto fw-bold fs-5">
-            Total CAD {formatCurrency(totalPrice)}
+            Total USD {formatCurrency(totalPrice)}
           </div>
         </Stack>
         {totalPrice !== 0 && (

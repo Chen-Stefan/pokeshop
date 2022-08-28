@@ -10,8 +10,8 @@ interface JwtPayload {
   id: string
 }
 
-export const protect = async (req: Request | any , res: Response, next: NextFunction) => {
-  let token: string | undefined;
+export const checkAuthenticated = async (req: Request | any , res: Response, next: NextFunction) => {
+  let token;
   
   if (
     req.headers.authorization &&
@@ -22,7 +22,7 @@ export const protect = async (req: Request | any , res: Response, next: NextFunc
   }
 
   if (!token) {
-    return next(new ErrorResponse("Not authorized to access this route", 401));
+    return next(new ErrorResponse("You are not authorized to access this route", 401));
   }
   // Decode JWT
   try {
