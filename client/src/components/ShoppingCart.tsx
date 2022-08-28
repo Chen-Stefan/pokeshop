@@ -42,7 +42,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
         <Offcanvas.Title>Cart</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        <Stack gap={3}>
+        <Stack gap={2}>
           {cartItems.map((item) => (
             <CartItem key={item.id} {...item} />
           ))}
