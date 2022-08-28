@@ -3,12 +3,12 @@ import PokemonCard from "../components/PokemonCard";
 
 type PokemonGridProps = {
   nameFilter: string;
-  selected: string;
+  selectedType: string;
 };
 
 export default function PokemonGrid({
   nameFilter,
-  selected,
+  selectedType
 }: PokemonGridProps) {
   const [allPokemons, setAllPokemons] = useState<any[]>([]);
   const [loadMore, setLoadMore] = useState(
@@ -33,6 +33,7 @@ export default function PokemonGrid({
     }
     createPokemonObject(data.results);
   };
+  
 
   useEffect(() => {
     handleGetAllPokemons();
@@ -43,7 +44,7 @@ export default function PokemonGrid({
       <div className="pokemon-container">
         <div className="all-container">
           {allPokemons.map((pokemon: any, index) =>
-            selected === ""
+            selectedType === ""
               ? pokemon.name.startsWith(nameFilter) && (
                   <PokemonCard
                     id={pokemon.id}
@@ -56,7 +57,7 @@ export default function PokemonGrid({
               : pokemon.name.startsWith(nameFilter) &&
                 pokemon.types.some(
                   (typeArray: { type: { name: string } }) =>
-                    typeArray.type.name === selected
+                    typeArray.type.name === selectedType
                 ) && (
                   <PokemonCard
                     id={pokemon.id}

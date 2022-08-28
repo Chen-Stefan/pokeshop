@@ -26,6 +26,7 @@
 .button__qtychange {
   background: url("../assets/images/background.png") no-repeat;
   border-radius: 0.5rem;
+  border: 1.5px solid gray;
   width: 30px;
   height: 32px;
 }

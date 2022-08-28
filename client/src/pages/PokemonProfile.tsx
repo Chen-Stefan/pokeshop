@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Container } from "react-bootstrap";
 
 const TYPE_COLORS: { [key: string]: any } = {
   bug: "#C2D020",

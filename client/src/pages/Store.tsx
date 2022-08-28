@@ -5,7 +5,7 @@ import PokemonGrid from "../components/PokemonGrid";
 
 export default function Store() {
   const options = [
-    { value: "", text: "--Choose a Type--" },
+    { value: "", text: "-- All Types --" },
     { value: "normal", text: "Normal" },
     { value: "fighting", text: "Fighting" },
     { value: "flying", text: "Flying" },
@@ -25,10 +25,10 @@ export default function Store() {
     { value: "fairy", text: "Fairy" },
   ];
   const [nameFilter, setNameFilter] = useState("");
-  const [selected, setSelected] = useState(options[0].value);
+  const [selectedType, setSelectedType] = useState(options[0].value);
 
-  const handleSelectedChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelected(event.target.value);
+  const handleSelectedTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedType(event.target.value);
   };
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -41,8 +41,8 @@ export default function Store() {
         <div className="filter__items">
           <div>Type</div>
           <select
-            value = {selected}
-            onChange={handleSelectedChange}
+            value = {selectedType}
+            onChange={handleSelectedTypeChange}
             style={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontSize: "16px",
@@ -68,7 +68,7 @@ export default function Store() {
         </div>
       </div>
 
-      <PokemonGrid nameFilter={nameFilter} selected={selected}/>
+      <PokemonGrid nameFilter={nameFilter} selectedType={selectedType} />
     </>
   );
 }
