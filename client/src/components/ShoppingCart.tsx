@@ -5,6 +5,7 @@ import { CartItem } from "./CartItem";
 import storeItems from "../data/pokemonItems.json";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import trashbin from "../assets/images/trashBin.png";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -21,13 +22,13 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
 
   useEffect(() => {
     if (totalPrice == 0) {
-      closeCart()
+      closeCart();
       navigate("/store");
     }
   }, [totalPrice]);
-  
+
   const handleNavigateToCheckout = () => {
-    closeCart()
+    closeCart();
     navigate("/checkout", {
       state: {
         paymentAmount: totalPrice
@@ -36,13 +37,24 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   };
 
   return (
-    // Offcanvas is the sliding effect
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>Cart</Offcanvas.Title>
       </Offcanvas.Header>
-      <Offcanvas.Body>
-        <Stack gap={2}>
+
+      <Offcanvas.Body className="p-1  ">
+        <div className="d-flex">
+          <button className="ms-auto button__emptycart">
+            <img
+              src={trashbin}
+              alt="trashbin"
+              style={{ width: "18px", height: "18px" }}
+            />
+            Clear
+          </button>
+        </div>
+
+        <Stack>
           {cartItems.map((item) => (
             <CartItem key={item.id} {...item} />
           ))}
