@@ -1,4 +1,3 @@
-import { SignalCellularConnectedNoInternet0BarTwoTone } from "@mui/icons-material";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useShoppingCart } from "../context/ShoppingCartContext";
@@ -49,7 +48,6 @@ export default function PaymentForm({ amount }: any) {
     if (!err) {
       try {
         const { id } = paymentMethod;
-        console.log(paymentAmount)
         const response = await axios.post("http://localhost:5000/payment", {
           amount: Math.round(paymentAmount * 100),
           id,
@@ -95,13 +93,13 @@ export default function PaymentForm({ amount }: any) {
       </form>
     </div>
   ) : (
-    <>
-      <h3 className="text-center">Your order has been placed!</h3>
-      <h5 className="text-center">We will notify you when your order has shipped</h5>
+    <div>
+      <h3 className="text-center mt-5">Your order has been placed!</h3>
+      <h5 className="text-center" style={{color: "green"}}>We will notify you when your order has shipped</h5>
 
-      <div className="d-flex justify-content-center m-3">
+      <div className="d-flex justify-content-center m-5">
         <img src={pikachu} style={{ width: "350px", height: "280px" }} />
       </div>
-    </>
+    </div>
   );
 }

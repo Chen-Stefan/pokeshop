@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import pikachuRunning from "../assets/images/pikachuRunning.gif";
 import fireworks from "../assets/images/fireworks.png";
