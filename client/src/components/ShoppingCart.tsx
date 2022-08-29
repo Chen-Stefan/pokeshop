@@ -23,7 +23,6 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   useEffect(() => {
     if (totalPrice == 0) {
       closeCart();
-      navigate("/store");
     }
   }, [totalPrice]);
 

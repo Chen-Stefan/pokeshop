@@ -1,5 +1,7 @@
+import { SignalCellularConnectedNoInternet0BarTwoTone } from "@mui/icons-material";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 import { FormEvent, useState } from "react";
 import pikachu from "../assets/images/pikachu.gif";
 
@@ -31,6 +33,7 @@ const CARD_OPTIONS: any = {
 export default function PaymentForm({ amount }: any) {
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const { clearCart } = useShoppingCart();
   const stripe = useStripe();
   const elements = useElements();
   const paymentAmount = amount.paymentAmount;
@@ -55,6 +58,7 @@ export default function PaymentForm({ amount }: any) {
         if (response.data.success) {
           console.log("Payment Successful");
           setSuccess(true);
+          clearCart()
         }
       } catch (error) {
         localStorage.removeItem("authToken");

@@ -1,4 +1,3 @@
-
 @import 'store.css';
 @import 'pokemonCard.css';
 @import 'stripe.css';
@@ -69,7 +68,7 @@ body {
 }
 
 .btn-logout {
-	padding: 0em 1.5em;
+	padding: 3px 1.5em;
 	border: none;
   background-color: inherit;
 	font-weight: 600;
