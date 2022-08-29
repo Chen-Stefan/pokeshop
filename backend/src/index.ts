@@ -5,7 +5,7 @@ import cors from 'cors';
 import userRouter from './routes/user';
 import paymentRoute from './routes/payment'
 import errorHandler from './middleware/error'
-
+import path from 'path'
 // .env
 dotenv.config();
 
@@ -26,8 +26,10 @@ app.use('/api/payment', paymentRoute)
 // Error Handler (Should be last piece of middleware)
 app.use(errorHandler)
 
-const PORT = process.env.PORT || 5000;
+// Production Deploy
 
+
+const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 process.on("unhandledRejection", (err, promise) => {
