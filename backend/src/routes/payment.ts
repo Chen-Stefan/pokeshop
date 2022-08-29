@@ -10,7 +10,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
 const paymentRoute = Router();
 
 paymentRoute.post(
-  "/payment",
+  "/",
   cors(),
   async (req: Request, res: Response, next: NextFunction) => {
     let { amount, id } = req.body;
