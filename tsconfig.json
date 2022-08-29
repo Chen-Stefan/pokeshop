@@ -12,11 +12,11 @@
       "jsx": "react",
       "moduleResolution": "node",
       "useUnknownInCatchVariables": false,
-      "rootDir": "src",
+      "rootDir": "backend/src",
       "noImplicitReturns": true,
       "noImplicitThis": true,
       "noImplicitAny": true,
       "strictNullChecks": true
   },
-  "include": ["src/index.ts", "src/*.d.ts"]
+  "include": ["backend/src/index.ts", "backend/src/*.d.ts"]
 }
