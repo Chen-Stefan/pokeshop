@@ -17,7 +17,7 @@ paymentRoute.post(
     try {
       await stripe.paymentIntents.create({
         amount,
-        currency: "USD",
+        currency: "cad",
         description: "Stefan's Pokeshop",
         payment_method: id,
         confirm: true,

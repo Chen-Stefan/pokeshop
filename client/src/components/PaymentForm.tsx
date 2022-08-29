@@ -42,7 +42,7 @@ export default function PaymentForm({ amount }: any) {
 
     const { err, paymentMethod }: any = await stripe?.createPaymentMethod({
       type: "card",
-      card: elements?.getElement(CardElement)!,
+      card: elements?.getElement(CardElement)!
     });
 
     if (!err) {
