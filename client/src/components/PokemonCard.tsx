@@ -17,7 +17,7 @@ export default function PokemonCard({
     getItemQuantity,
     increaseCartQuantity,
     decreaseCartQuantity,
-    RemoveFromCart,
+    removeFromCart,
   } = useShoppingCart();
 
   const quantity = getItemQuantity(id);
@@ -58,7 +58,7 @@ export default function PokemonCard({
             </div>
             <button className="button__qtychange" onClick={() => increaseCartQuantity(id)}>+</button>
           </div>
-          <Button variant="danger" className="fw-bold" onClick={() => RemoveFromCart(id)}>
+          <Button variant="danger" className="fw-bold" onClick={() => removeFromCart(id)}>
             Remove
           </Button>
         </div>

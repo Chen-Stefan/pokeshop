@@ -12,7 +12,7 @@ type ShoppingCartProps = {
 };
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
-  const { closeCart, cartItems } = useShoppingCart();
+  const { closeCart, clearCart, cartItems } = useShoppingCart();
   const totalPrice = cartItems.reduce((total, cartItem) => {
     const item = storeItems.find((item) => item.id === cartItem.id);
     return total + (item?.price || 0) * cartItem.quantity;
@@ -42,17 +42,19 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
         <Offcanvas.Title>Cart</Offcanvas.Title>
       </Offcanvas.Header>
 
-      <Offcanvas.Body className="p-1  ">
-        <div className="d-flex">
-          <button className="ms-auto button__emptycart">
-            <img
-              src={trashbin}
-              alt="trashbin"
-              style={{ width: "18px", height: "18px" }}
-            />
-            Clear
-          </button>
-        </div>
+      <Offcanvas.Body className="p-1">
+        {totalPrice !== 0 && (
+          <div className="d-flex">
+            <button onClick={clearCart} className="ms-auto button__emptycart">
+              <img
+                src={trashbin}
+                alt="trashbin"
+                style={{ width: "18px", height: "18px" }}
+              />
+              Clear
+            </button>
+          </div>
+        )}
 
         <Stack>
           {cartItems.map((item) => (

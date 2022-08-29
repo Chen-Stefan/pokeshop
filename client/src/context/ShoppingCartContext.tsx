@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { ShoppingCart } from "../components/ShoppingCart";
-import { useLocalStorage } from "../hooks/useLocalStorage"
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
@@ -17,7 +17,8 @@ type ShoppingCartContext = {
   getItemQuantity: (id: number) => number;
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
-  RemoveFromCart: (id: number) => void;
+  removeFromCart: (id: number) => void;
+  clearCart: () => void;
   cartQuantity: number;
   cartItems: CartItem[];
 };
@@ -30,7 +31,10 @@ export function useShoppingCart() {
 // 所有的function 和 variable 都在ShoppingCartProvider这个context里面
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart',[]);
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+    "shopping-cart",
+    []
+  );
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
@@ -45,7 +49,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   }
 
   function increaseCartQuantity(id: number) {
-    // If item not in cart, add item to curritem; if item in cart, increase quantity by 1 
+    // If item not in cart, add item to curritem; if item in cart, increase quantity by 1
     setCartItems((currentItems) => {
       if (currentItems.find((item) => item.id === id) == null) {
         return [...currentItems, { id, quantity: 1 }];
@@ -77,27 +81,33 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     });
   }
 
-  function RemoveFromCart(id: number) {
+  function removeFromCart(id: number) {
     setCartItems((currentItems) => {
       return currentItems.filter((item) => item.id !== id);
     });
   }
 
+  function clearCart() {
+    setCartItems((currentItems) => {
+      return currentItems.filter((item) => item.id === null);
+    });
+  }
   return (
     <ShoppingCartContext.Provider
       value={{
         getItemQuantity,
         increaseCartQuantity,
         decreaseCartQuantity,
-        RemoveFromCart,
+        removeFromCart,
         openCart,
         closeCart,
+        clearCart,
         cartItems,
         cartQuantity,
       }}
     >
       {children}
-      <ShoppingCart isOpen={isOpen}/>
+      <ShoppingCart isOpen={isOpen} />
     </ShoppingCartContext.Provider>
   );
 }

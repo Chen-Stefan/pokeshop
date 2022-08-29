@@ -9,7 +9,7 @@ type CartItemProps = {
 };
 
 export function CartItem({ id, quantity }: CartItemProps) {
-  const { RemoveFromCart } = useShoppingCart();
+  const { removeFromCart } = useShoppingCart();
   const item = storeItems.find((item) => item.id === id);
   if (item == null) return null;
 
@@ -35,7 +35,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
         variant="outline-danger"
         size="sm"
         className="float-end m-1"
-        onClick={() => RemoveFromCart(item.id)}
+        onClick={() => removeFromCart(item.id)}
       >
         &times;
       </Button>
