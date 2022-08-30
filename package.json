@@ -8,7 +8,7 @@
     "start": "node build/dist/index.js",
     "dev": "ts-node-dev backend/index.ts",
     "build": "tsc",
-    "heroku-postbuild": "tsc && cd client && npm i --only=dev && npm i && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false tsc cd client && npm i --only=dev && npm i && npm run build"
   },
   "keywords": [],
   "author": "",
