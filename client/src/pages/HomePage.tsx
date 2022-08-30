@@ -22,7 +22,7 @@ export default function HomePage() {
 
     try {
       const { data } = await axios.post(
-        "https://pokeshop-stefanchen.herokuapp.com/api/user/login",
+        "/api/user/login",
         { email, password },
         config
       );
