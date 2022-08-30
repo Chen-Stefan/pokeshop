@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node build/dist/index.js",
     "dev": "ts-node-dev backend/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "heroku-postbuild": "tsc && cd client && npm i --only=dev && npm i && npm run build"
   },
   "keywords": [],
   "author": "",
