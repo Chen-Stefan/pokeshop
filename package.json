@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node build/dist/index.js",
-    "dev": "ts-node-dev backend/index.ts",
+    "dev": "nodemon backend/index.ts",
     "build": "tsc",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false tsc && cd client && npm i --only=dev && npm i && npm run build"
   },
