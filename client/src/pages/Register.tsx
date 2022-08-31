@@ -57,12 +57,12 @@ export default function Register() {
       <form onSubmit={handleRegister} className="register-screen__form">
         <h3 className="m-2">Register</h3>
         {success && (
-          <span className="alert alert-success p-2 d-flex" role="alert">
+          <span className="alert alert-success p-2 d-flex text-center" role="alert">
             {success}
           </span>
         )}
         {error && (
-          <span className="alert alert-danger p-2 d-flex" role="alert">
+          <span className="alert alert-danger p-2 d-flex text-center" role="alert">
             {error}
           </span>
         )}
