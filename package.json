@@ -5,8 +5,10 @@
   "main": "build/dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon backend/index.ts",
+    "client": "npm start --prefix client",
     "start": "node build/dist/index.js",
-    "dev": "nodemon backend/index.ts",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "tsc",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false tsc && cd client && npm i --only=dev && npm i && npm run build"
   },
@@ -16,6 +18,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
+    "concurrently": "^7.3.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
