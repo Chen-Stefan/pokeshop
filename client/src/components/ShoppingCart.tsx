@@ -26,14 +26,15 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
     }
   }, [totalPrice]);
 
-  const handleNavigateToCheckout = () => {
-    closeCart();
-    navigate("/checkout", {
-      state: {
-        paymentAmount: totalPrice
-      },
-    });
-  };
+  // const handleNavigateToCheckout = () => {
+  //   closeCart();
+  //   navigate("/checkout", {
+  //     state: {
+  //       paymentAmount: totalPrice
+  //     },
+  //   });
+  // };
+  
 
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">
@@ -57,17 +58,11 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
 
         <Stack>
           {cartItems.map((item) => (
-            <CartItem key={item.id} {...item} />
+            <CartItem key={item.id} {...item} totalPrice={totalPrice}/>
           ))}
-          <div className="ms-auto fw-bold fs-5">
-            Total CAD {formatCurrency(totalPrice)}
-          </div>
+         
         </Stack>
-        {totalPrice !== 0 && (
-          <button onClick={handleNavigateToCheckout} className="checkout">
-            Checkout
-          </button>
-        )}
+        
       </Offcanvas.Body>
     </Offcanvas>
   );

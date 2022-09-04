@@ -6,19 +6,30 @@ import { formatCurrency } from "../utilities/formatCurrency";
 type CartItemProps = {
   id: number;
   quantity: number;
+  totalPrice: number;
 };
 
-export function CartItem({ id, quantity }: CartItemProps) {
+export function CartItem({ id, quantity, totalPrice }: CartItemProps) {
   const { removeFromCart } = useShoppingCart();
   const item = storeItems.find((item) => item.id === id);
   if (item == null) return null;
 
+  const handleCreateCheckout = () => {
+    // We want to get back our url so that user can access our page
+    fetch('/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: []
+    })
+  }
+
   return (
-    <Stack direction="horizontal" className="d-flex">
+    <><Stack direction="horizontal" className="d-flex">
       <img
         src={item.imgUrl}
-        style={{ width: "125px", height: "120px", objectFit: "cover" }}
-      />
+        style={{ width: "125px", height: "120px", objectFit: "cover" }} />
       <div className="me-auto">
         <div>
           {item.name}{" "}
@@ -39,6 +50,15 @@ export function CartItem({ id, quantity }: CartItemProps) {
       >
         &times;
       </Button>
-    </Stack>
+    </Stack><div className="ms-auto fw-bold fs-5">
+        Total CAD {formatCurrency(totalPrice)}
+      </div>
+    {totalPrice !== 0 && (
+      <button onClick={handleCreateCheckout} className="checkout">
+        Checkout
+      </button>
+      
+    )}
+    </>
   );
 }
