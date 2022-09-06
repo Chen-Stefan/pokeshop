@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import pokeball from "../assets/images/pokeball.png";
@@ -5,14 +6,22 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export default function Navbar() {
   const { openCart, cartQuantity } = useShoppingCart();
+  const [stickyNavbar, setStickyNavbar]= useState(false)
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setStickyNavbar(window.scrollY > 200)
+    }
+    window.addEventListener('scroll', handleScroll)
+  })
 
   const logoutHandler = () => {
     localStorage.removeItem("authToken");
     navigate("/");
   };
   return (
-    <div className="menu">
+    <div className={stickyNavbar ? 'menu sticky' : 'menu' }>
       <div className="logo">
         <img src={pokeball} alt="" />
       </div>

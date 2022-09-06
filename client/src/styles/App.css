@@ -31,6 +31,12 @@ body {
 	justify-content: space-between;
 }
 
+.menu.sticky {
+	position: sticky;
+	top: 0;
+	background: #fcee88;
+}
+
 .logo{
 	float: left;    
 	height: 48px;
