@@ -31,27 +31,39 @@ const productItems = new Map([
 ]);
 const paymentRoute = Router();
 
-paymentRoute.post(
-  "/",
-  cors(),
-  async (req: Request, res: Response, next: NextFunction) => {
-    let { amount, id } = req.body;
-    try {
-      await stripe.paymentIntents.create({
-        amount,
-        currency: "cad",
-        description: "Stefan's Pokeshop",
-        payment_method: id,
-        confirm: true,
-      });
-      res.json({
-        success: true,
-        message: "Payment Successful",
-      });
-    } catch (error) {
-      next(error);
-    }
+paymentRoute.post('/create-checkout-session', async (req, res) => {
+  try {
+    session = await stripe.checkout.sessions.create({
+
+    })
+    res.json({ url: "Hi"})
+  } catch (error) {
+    res.status(500).json({ error: error.message})
   }
-);
+})
+
+
+// paymentRoute.post(
+//   "/",
+//   cors(),
+//   async (req: Request, res: Response, next: NextFunction) => {
+//     let { amount, id } = req.body;
+//     try {
+//       await stripe.paymentIntents.create({
+//         amount,
+//         currency: "cad",
+//         description: "Stefan's Pokeshop",
+//         payment_method: id,
+//         confirm: true,
+//       });
+//       res.json({
+//         success: true,
+//         message: "Payment Successful",
+//       });
+//     } catch (error) {
+//       next(error);
+//     }
+//   }
+// );
 
 export default paymentRoute;
