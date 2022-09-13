@@ -1,5 +1,4 @@
 import * as dotenv from "dotenv";
-import cors from "cors";
 import { Router } from "express";
 import { Request, Response } from "express";
 
@@ -31,7 +30,7 @@ const storeItems = new Map([
 ]);
 const paymentRoute = Router();
 
-paymentRoute.post('/create-checkout-session', async (req: Request, res: Response) => {
+paymentRoute.post('/', async (req: Request, res: Response) => {
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -49,8 +48,8 @@ paymentRoute.post('/create-checkout-session', async (req: Request, res: Response
           quantity: item.quantity
         }
       }),
-      success_url: '',
-      cancel_url: ''
+      success_url: `${process.env.CLIENT_URL}?success=true`,
+      cancel_url: `${process.env.CLIENT_URL}?calceled=true`
     })
     res.json({ url: session.url })
   } catch (error) {

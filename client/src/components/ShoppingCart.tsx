@@ -28,6 +28,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
 
   const handleCreateCheckout = () => {
     // We want to get back our url so that user can access our page
+    // closeCart()
     fetch("http://localhost:5000/create-checkout-session", {
       method: "POST",
       headers: {
@@ -53,15 +54,6 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
         console.error(e.error);
       });
   };
-
-  // const handleNavigateToCheckout = () => {
-  //   closeCart();
-  //   navigate("/checkout", {
-  //     state: {
-  //       paymentAmount: totalPrice
-  //     },
-  //   });
-  // };
 
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">

@@ -23,7 +23,7 @@ app.use(cors({
 
 // Routes
 app.use('/api/user', userRouter);
-app.use('/api/payment', paymentRoute)
+app.use('/create-checkout-session', paymentRoute)
 
 // Error Handler (Should be last piece of middleware)
 app.use(errorHandler)
