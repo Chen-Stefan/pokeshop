@@ -26,6 +26,34 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
     }
   }, [totalPrice]);
 
+  const handleCreateCheckout = () => {
+    // We want to get back our url so that user can access our page
+    fetch("http://localhost:5000/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: [
+          { id: 1, quantity: 3 },
+          { id: 2, quantity: 1 },
+        ],
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return res.json().then((json) => Promise.reject(json));
+      })
+      .then(({ url }) => {
+        // 试试 navigate
+        console.log(url);
+        // window.location = url
+      })
+      .catch((e) => {
+        console.error(e.error);
+      });
+  };
+
   // const handleNavigateToCheckout = () => {
   //   closeCart();
   //   navigate("/checkout", {
@@ -34,7 +62,6 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   //     },
   //   });
   // };
-  
 
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">
@@ -58,11 +85,18 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
 
         <Stack>
           {cartItems.map((item) => (
-            <CartItem key={item.id} {...item} totalPrice={totalPrice}/>
+            <CartItem key={item.id} {...item} totalPrice={totalPrice} />
           ))}
-         
+          <div className="ms-auto fw-bold fs-5">
+            Total CAD {formatCurrency(totalPrice)}
+          </div>
         </Stack>
-        
+
+        {totalPrice !== 0 && (
+          <button onClick={handleCreateCheckout} className="checkout">
+            Checkout
+          </button>
+        )}
       </Offcanvas.Body>
     </Offcanvas>
   );

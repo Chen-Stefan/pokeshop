@@ -1,13 +1,13 @@
 import * as dotenv from "dotenv";
 import cors from "cors";
 import { Router } from "express";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 
 dotenv.config();
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const productItems = new Map([
+const storeItems = new Map([
   [1, { priceInCents: 1999, name: "Bulbasaur" }],
   [2, { priceInCents: 1999, name: "Ivysaur" }],
   [3, { priceInCents: 1999, name: "Venusaur" }],
@@ -31,39 +31,32 @@ const productItems = new Map([
 ]);
 const paymentRoute = Router();
 
-paymentRoute.post('/create-checkout-session', async (req, res) => {
+paymentRoute.post('/create-checkout-session', async (req: Request, res: Response) => {
   try {
-    session = await stripe.checkout.sessions.create({
-
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: req.body.items.map((item: { id: number; quantity: any; }) => {
+        const storeItem = storeItems.get(item.id)
+        return {
+          price_data: {
+            currency: 'cad',
+            product_data: {
+              name: storeItem?.name
+            },
+            unit_amount: storeItem?.priceInCents
+          },
+          quantity: item.quantity
+        }
+      }),
+      success_url: '',
+      cancel_url: ''
     })
-    res.json({ url: "Hi"})
+    res.json({ url: session.url })
   } catch (error) {
     res.status(500).json({ error: error.message})
   }
 })
 
-
-// paymentRoute.post(
-//   "/",
-//   cors(),
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     let { amount, id } = req.body;
-//     try {
-//       await stripe.paymentIntents.create({
-//         amount,
-//         currency: "cad",
-//         description: "Stefan's Pokeshop",
-//         payment_method: id,
-//         confirm: true,
-//       });
-//       res.json({
-//         success: true,
-//         message: "Payment Successful",
-//       });
-//     } catch (error) {
-//       next(error);
-//     }
-//   }
-// );
 
 export default paymentRoute;
