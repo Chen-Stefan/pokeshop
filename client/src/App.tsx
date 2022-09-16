@@ -17,7 +17,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<LoginRoute />}></Route>
           <Route
-            path="/store/pokemon/:pokemonIndex"
+            path="/pokemon/:pokemonIndex"
             element={<PokemonProfile />}
           ></Route>
         </Routes>
