@@ -4,9 +4,8 @@ import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
 import PokemonProfile from "./pages/PokemonProfile";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
-import HomeRoute from "./components/routing/HomeRoute";
+import LoginRoute from "./components/routing/LoginRoute";
 import StoreRoute from "./components/routing/StoreRoute";
-import PaymentRoute from "./components/routing/PaymentRoute";
 
 function App() {
   return (
@@ -14,14 +13,13 @@ function App() {
       <ShoppingCartProvider>
         <Navbar />
         <Routes>
-          <Route path="/" element={<HomeRoute />}></Route>
+          <Route path="/" element={<StoreRoute />}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/store" element={<StoreRoute />}></Route>
+          <Route path="/login" element={<LoginRoute />}></Route>
           <Route
             path="/store/pokemon/:pokemonIndex"
             element={<PokemonProfile />}
           ></Route>
-          <Route path="/checkout" element={<PaymentRoute />}></Route>
         </Routes>
       </ShoppingCartProvider>
     </BrowserRouter>

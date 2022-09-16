@@ -41,7 +41,7 @@ export default function Store() {
         <div className="filter__items">
           <div>Type</div>
           <select
-            value = {selectedType}
+            value={selectedType}
             onChange={handleSelectedTypeChange}
             style={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",

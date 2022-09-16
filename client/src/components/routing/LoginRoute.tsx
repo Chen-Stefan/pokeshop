@@ -1,12 +1,12 @@
 import { Navigate } from "react-router-dom";
-import HomePage from "../../pages/HomePage";
+import LoginPage from "../../pages/LoginPage";
 
-const HomeRoute = () => {
+const LoginRoute = () => {
   return localStorage.getItem("authToken") ? (
     <Navigate to="/store" />
   ) : (
-    <HomePage />
+    <LoginPage />
   );
 };
 
-export default HomeRoute;
+export default LoginRoute;

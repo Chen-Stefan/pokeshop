@@ -5,7 +5,7 @@ import pikachuRunning from "../assets/images/pikachuRunning.gif";
 import fireworks from "../assets/images/fireworks.png";
 import Footer from "../components/Footer";
 
-export default function HomePage() {
+export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -29,7 +29,7 @@ export default function HomePage() {
       // when login successful, we will get a token, store it in localStorage
       localStorage.setItem("authToken", data.token);
 
-      navigate("/store");
+      navigate("/");
     } catch (error) {
       setError(error.response.data.errorMessage);
       setTimeout(() => {

@@ -27,12 +27,12 @@ export default function Navbar() {
       </div>
 
       <div className="menu__right-column">
-        {localStorage.getItem("authToken") && (
+        {localStorage.getItem("authToken") ? (
           <button onClick={logoutHandler} className="btn-logout">
             Log out
           </button>
-        )}
-        <Link to="/store">Shop</Link>
+        ):  <Link to="/login">Login</Link>}
+       
         <Button
           onClick={openCart}
           style={{ width: "3.2rem", height: "3.2rem", position: "relative" }}

@@ -45,11 +45,6 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
         if (res.ok) return res.json();
         return res.json().then((json) => Promise.reject(json));
       })
-      .then(({ url }) => {
-        // 试试 navigate
-        console.log(url);
-        // window.location = url
-      })
       .catch((e) => {
         console.error(e.error);
       });
@@ -85,9 +80,11 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
         </Stack>
 
         {totalPrice !== 0 && (
-          <button onClick={handleCreateCheckout} className="checkout">
+          <form action="/create-checkout-session" method="POST">
+          <button type="submit" className="checkout">
             Checkout
           </button>
+        </form>
         )}
       </Offcanvas.Body>
     </Offcanvas>

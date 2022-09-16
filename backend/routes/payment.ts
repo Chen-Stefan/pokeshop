@@ -43,15 +43,17 @@ paymentRoute.post('/', async (req: Request, res: Response) => {
             product_data: {
               name: storeItem?.name
             },
-            unit_amount: storeItem?.priceInCents
+            unit_amount: storeItem?.priceInCents,
+            tax_behavior: "exclusive",
           },
           quantity: item.quantity
         }
       }),
       success_url: `${process.env.CLIENT_URL}?success=true`,
-      cancel_url: `${process.env.CLIENT_URL}?calceled=true`
+      cancel_url: `${process.env.CLIENT_URL}?canceled=true`,
+      automatic_tax: {enabled: true},
     })
-    res.json({ url: session.url })
+    res.redirect(303, session.url);
   } catch (error) {
     res.status(500).json({ error: error.message})
   }
